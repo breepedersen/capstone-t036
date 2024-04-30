@@ -2477,11 +2477,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\JuniorRangers API\\JuniorRangers API.csproj",
+      "projectUniqueName": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\JuniorRangers API.csproj",
       "projectName": "JuniorRangers API",
-      "projectPath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\JuniorRangers API\\JuniorRangers API.csproj",
+      "projectPath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\JuniorRangers API.csproj",
       "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\JuniorRangers API\\obj\\",
+      "outputPath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

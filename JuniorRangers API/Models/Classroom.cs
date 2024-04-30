@@ -9,5 +9,7 @@ namespace JuniorRangers_API.Models
         public String JoinCode { get; set; }
         public ICollection<User> Users { get; set; }
         public ICollection<Message> Messages { get; set; }
+        public ICollection<Book> Books { get; set; }
+        public ICollection<Album> Albums { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m4VU5RQZ5v2F5xJdzvYaR+7WOnI7qC+SIdlJ2mj7vxUOeru1VKHHovSkWfHpZW/P7XTcH39iZWR72F2b2w8eqg==",
+  "dgSpecHash": "MWCZ/OIaVdbCCMN0Hhg1ifI5l7wI51c7hcbthAngsb7EmqcJPivCKKi4bWi7JiYFSlEa9J1k8+IzL2BYBGEwmg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\JuniorRangers API\\JuniorRangers API.csproj",
+  "projectFilePath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\JuniorRangers API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tom\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Tom\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
