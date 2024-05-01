@@ -24,6 +24,7 @@ namespace JuniorRangers_API.Data
         //to setup linking of many-to-many tables (without going directly into database)
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //UserAchievements many-to-many
             modelBuilder.Entity<UserAchievement>()
                 .HasKey(ua => new { ua.UserId, ua.AchievementId });
             modelBuilder.Entity<UserAchievement>()

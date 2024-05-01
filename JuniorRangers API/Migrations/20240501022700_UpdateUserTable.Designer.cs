@@ -4,6 +4,7 @@ using JuniorRangers_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JuniorRangers_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240501022700_UpdateUserTable")]
+    partial class UpdateUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +41,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasKey("AchievementId");
 
-                    b.ToTable("Achievements", (string)null);
+                    b.ToTable("Achievements");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Album", b =>
@@ -64,7 +66,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("ClassroomClassId");
 
-                    b.ToTable("Albums", (string)null);
+                    b.ToTable("Albums");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Book", b =>
@@ -93,7 +95,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("ClassroomClassId");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Classroom", b =>
@@ -110,7 +112,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasKey("ClassId");
 
-                    b.ToTable("Classrooms", (string)null);
+                    b.ToTable("Classrooms");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Message", b =>
@@ -144,7 +146,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Picture", b =>
@@ -179,7 +181,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("UploaderUserId");
 
-                    b.ToTable("Pictures", (string)null);
+                    b.ToTable("Pictures");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Post", b =>
@@ -212,7 +214,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("PosterUserId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.User", b =>
@@ -246,7 +248,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("ClassroomClassId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.UserAchievement", b =>
@@ -261,7 +263,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("AchievementId");
 
-                    b.ToTable("UserAchievements", (string)null);
+                    b.ToTable("UserAchievements");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Album", b =>
