@@ -1,12 +1,23 @@
-﻿namespace JuniorRangers_API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace JuniorRangers_API.Models
 {
     public class User
     {
         public int UserId { get; set; }
+
+        [StringLength(50)]
         public String Password { get; set; }
+
+        [StringLength(20)]
         public String FirstName { get; set; }
+
+        [StringLength(20)]
         public String LastName { get; set; }
+
+        [StringLength(20)]
         public String Role { get; set; }
+
         public Classroom? Classroom { get; set; }
         public ICollection<Message> Messages { get; set; }
         public ICollection<Picture> Picures { get; set; }

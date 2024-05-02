@@ -25,10 +25,47 @@ namespace JuniorRangers_API
                             FirstName = "Tom",
                             LastName = "Pham",
                             Password = "123",
-                            Role = "Student",
+                            Role = "Ranger",
                             Classroom = new Classroom()
                             {
-                                JoinCode = "joinme"
+                                JoinCode = "class1",
+                                Albums = new List<Album>()
+                                {
+                                    new Album
+                                    {
+                                        Name = "Beach Trip",
+                                        CreationDate = DateTime.Now,
+                                        Pictures = new List<Picture>()
+                                        {
+                                            new Picture { Description = "Caption 1", UploadDate = new DateTime(2022,02,21), Uploader = new User { FirstName = "Chris", LastName = "Chesher", Password = "123", Role = "Admin" }},
+                                            new Picture { Description = "Caption 2", UploadDate = new DateTime(2022,02,13), Uploader = new User { FirstName = "Molly", LastName = "Arnold", Password = "123", Role = "Admin" }}
+                                        }
+                                    }
+                                },
+                                Books = new List<Book>()
+                                {
+                                    new Book {Title = "Harry Potter", Content = "You are a wizard Harry", UploadDate = DateTime.Now},
+                                    new Book {Title = "Australian Native Flora", Content = "This is a flower", UploadDate = DateTime.Now}
+                                },
+                                Posts = new List<Post>()
+                                {
+                                    new Post
+                                    {
+                                        Likes = 5,
+                                        Text = "Check out this platypus",
+                                        PostDate = DateTime.Now,
+                                        Pictures = new List<Picture>()
+                                        {
+                                            new Picture { Description = "Platypus", UploadDate = new DateTime(2022,02,13), Uploader = new User { FirstName = "Toby", LastName = "Toby", Password = "123", Role = "Ranger" }}
+                                        }
+                                    }
+                                },
+                                Messages = new List<Message>()
+                                {
+                                    new Message { MessageType = "Announcement", MessageText = "Today will be a cold day", Date = DateTime.Now },
+                                    new Message { MessageType = "Event", MessageText = "A field trip to the mountains", Date = new DateTime(2024,06,12)},
+                                    new Message { MessageType = "Chat", MessageText = "Hi all", Date = DateTime.Now }
+                                }
                             }
                         },
                         Achievement  = new Achievement()
@@ -47,7 +84,7 @@ namespace JuniorRangers_API
                             Role = "Student",
                             Classroom = new Classroom()
                             {
-                                JoinCode = "class2"
+                                JoinCode = "class2" 
                             }
                         },
                         Achievement  = new Achievement()
@@ -98,7 +135,6 @@ namespace JuniorRangers_API
                 dataContext.UserAchievements.AddRange(UserAchievements);
                 dataContext.SaveChanges();
             }
-
         }
     }
 }

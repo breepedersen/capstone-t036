@@ -6,7 +6,10 @@ namespace JuniorRangers_API.Models
     {
         [Key]
         public int ClassId { get; set; }
+
+        [StringLength(10)]
         public String JoinCode { get; set; }
+
         public ICollection<User> Users { get; set; }
         public ICollection<Message> Messages { get; set; }
         public ICollection<Book> Books { get; set; }
