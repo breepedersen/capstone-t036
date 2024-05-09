@@ -6,6 +6,9 @@ namespace JuniorRangers_API.Models
     {
         public int UserId { get; set; }
 
+        [StringLength(20)]
+        public String Username { get; set; }
+
         [StringLength(50)]
         public String Password { get; set; }
 

@@ -9,6 +9,8 @@ namespace JuniorRangers_API.Helper
         public MappingProfiles()
         {
             CreateMap<User, UserDto>();
+            CreateMap<Classroom, ClassroomDto>();
+            CreateMap<Book, BookDto>();
         }
     }
 }

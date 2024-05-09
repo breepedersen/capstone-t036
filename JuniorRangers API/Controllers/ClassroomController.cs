@@ -50,14 +50,14 @@ namespace JuniorRangers_API.Controllers
         }
 
         [HttpGet("user/{classId}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Classroom>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         [ProducesResponseType(400)]
         public IActionResult GetUserByClassroom(int classId)
         {
             if (!_classroomRepository.ClassroomExists(classId))
                 return NotFound();
 
-            var users = _mapper.Map<List<ClassroomDto>>(_classroomRepository.GetUserByClassroom(classId));
+            var users = _mapper.Map<List<UserDto>>(_classroomRepository.GetUsersByClassroom(classId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

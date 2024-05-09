@@ -22,6 +22,7 @@ namespace JuniorRangers_API
                     {
                         User = new User()
                         {
+                            Username = "TomMan",
                             FirstName = "Tom",
                             LastName = "Pham",
                             Password = "123",
@@ -37,8 +38,8 @@ namespace JuniorRangers_API
                                         CreationDate = DateTime.Now,
                                         Pictures = new List<Picture>()
                                         {
-                                            new Picture { Description = "Caption 1", UploadDate = new DateTime(2022,02,21), Uploader = new User { FirstName = "Chris", LastName = "Chesher", Password = "123", Role = "Admin" }},
-                                            new Picture { Description = "Caption 2", UploadDate = new DateTime(2022,02,13), Uploader = new User { FirstName = "Molly", LastName = "Arnold", Password = "123", Role = "Admin" }}
+                                            new Picture { Description = "Caption 1", UploadDate = new DateTime(2022,02,21), Uploader = new User { Username = "Username1", FirstName = "Chris", LastName = "Chesher", Password = "123", Role = "Admin" }},
+                                            new Picture { Description = "Caption 2", UploadDate = new DateTime(2022,02,13), Uploader = new User { Username = "username2", FirstName = "Molly", LastName = "Arnold", Password = "123", Role = "Admin" }}
                                         }
                                     }
                                 },
@@ -56,7 +57,7 @@ namespace JuniorRangers_API
                                         PostDate = DateTime.Now,
                                         Pictures = new List<Picture>()
                                         {
-                                            new Picture { Description = "Platypus", UploadDate = new DateTime(2022,02,13), Uploader = new User { FirstName = "Toby", LastName = "Toby", Password = "123", Role = "Ranger" }}
+                                            new Picture { Description = "Platypus", UploadDate = new DateTime(2022,02,13), Uploader = new User { Username = "tobyy", FirstName = "Toby", LastName = "Toby", Password = "123", Role = "Ranger" }}
                                         }
                                     }
                                 },
@@ -78,6 +79,7 @@ namespace JuniorRangers_API
                     {
                         User = new User()
                         {
+                            Username = "Benname",
                             FirstName = "Ben",
                             LastName = "Eckersley",
                             Password = "123",
@@ -97,6 +99,7 @@ namespace JuniorRangers_API
                     {
                         User = new User()
                         {
+                            Username = "SP",
                             FirstName = "Sonnie",
                             LastName = "Poon",
                             Password = "123",
@@ -116,6 +119,7 @@ namespace JuniorRangers_API
                     {
                         User = new User()
                         {
+                            Username = "Br",
                             FirstName = "Bree",
                             LastName = "Pederson",
                             Password = "123",

@@ -26,9 +26,9 @@ namespace JuniorRangers_API.Repository
             return _context.Classrooms.OrderBy(c => c.ClassId).ToList();
         }
 
-        public ICollection<User> GetUserByClassroom(int classId)
+        public ICollection<User> GetUsersByClassroom(int classId)
         {
-            return (ICollection<User>)_context.Classrooms.Where(c => c.ClassId == classId).Select(u => u.Users).ToList();
+            return _context.Users.Where(u => u.Classroom.ClassId == classId).ToList();
         }
     }
 }
