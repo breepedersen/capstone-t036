@@ -1,0 +1,11 @@
+﻿using JuniorRangers_API.Models;
+
+namespace JuniorRangers_API.Interfaces
+{
+    public interface IAlbumRepository
+    {
+        bool AlbumExists(int albumId);
+        Album GetAlbum(int albumId);
+        ICollection<Album> GetAlbumsByClassroom(int classId);
+    }
+}
