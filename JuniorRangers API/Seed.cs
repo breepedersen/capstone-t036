@@ -63,9 +63,9 @@ namespace JuniorRangers_API
                                 },
                                 Messages = new List<Message>()
                                 {
-                                    new Message { MessageType = "Announcement", MessageText = "Today will be a cold day", Date = DateTime.Now },
-                                    new Message { MessageType = "Event", MessageText = "A field trip to the mountains", Date = new DateTime(2024,06,12)},
-                                    new Message { MessageType = "Chat", MessageText = "Hi all", Date = DateTime.Now }
+                                    new Message { MessageType = "Announcement", MessageText = "Today will be a cold day", Date = DateTime.Now, Sender = new User { Username = "gregyy", FirstName = "Greg", LastName = "Polby", Password = "123", Role = "Ranger" } },
+                                    new Message { MessageType = "Event", MessageText = "A field trip to the mountains", Date = new DateTime(2024,06,12), Sender = new User { Username = "TheRanger", FirstName = "Eve", LastName = "Smith", Password = "123", Role = "Ranger" }},
+                                    new Message { MessageType = "Chat", MessageText = "Hi all", Date = DateTime.Now , Sender = new User { Username = "First", FirstName = "Adam", LastName = "Smith", Password = "123", Role = "Ranger" }}
                                 }
                             }
                         },

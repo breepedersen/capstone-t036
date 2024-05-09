@@ -20,6 +20,8 @@ namespace JuniorRangers_API
             builder.Services.AddScoped<IClassroomRepository, ClassroomRepository>();
             builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
             builder.Services.AddScoped<IBookRepository, BookRepository>();
+            builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+            builder.Services.AddScoped<IPictureRepository, PictureRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

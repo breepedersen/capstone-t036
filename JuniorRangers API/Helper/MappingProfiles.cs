@@ -11,6 +11,7 @@ namespace JuniorRangers_API.Helper
             CreateMap<User, UserDto>();
             CreateMap<Classroom, ClassroomDto>();
             CreateMap<Book, BookDto>();
+            CreateMap<Message, MessageDto>();
         }
     }
 }
