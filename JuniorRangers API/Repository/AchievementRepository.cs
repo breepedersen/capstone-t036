@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using JuniorRangers_API.Data;
 using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
@@ -26,6 +27,16 @@ namespace JuniorRangers_API.Repository
         public ICollection<Achievement> GetAchievements()
         {
             return _context.Achievements.OrderBy(a => a.AchievementId).ToList();
+        }
+
+        public ICollection<Achievement> GetAchievementsByMissionGroup(int missonGroupId)
+        {
+            return _context.Achievements.Where(a => a.MissionGroup == missonGroupId).ToList();
+        }
+
+        public ICollection<Achievement> GetAchievementsByUser(int UserId)
+        {
+            return _context.UserAchievements.Where(u => u.UserId == UserId).Select(a => a.Achievement).ToList();
         }
 
         public ICollection<User> GetUsersByAchievement(int achievementId)

@@ -12,6 +12,7 @@ namespace JuniorRangers_API.Helper
             CreateMap<Classroom, ClassroomDto>();
             CreateMap<Book, BookDto>();
             CreateMap<Message, MessageDto>();
+            CreateMap<Achievement, AchievementDto>();
         }
     }
 }

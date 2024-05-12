@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JuniorRangers_API.Models
+namespace JuniorRangers_API.Dto
 {
-    public class Achievement
+    public class AchievementDto
     {
         public int AchievementId { get; set; }
 
@@ -10,6 +10,5 @@ namespace JuniorRangers_API.Models
         public String Description { get; set; }
         public int Points { get; set; }
         public int? MissionGroup { get; set; }
-        public ICollection<UserAchievement> UserAchievement { get; set; }
     }
 }

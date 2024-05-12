@@ -72,8 +72,10 @@ namespace JuniorRangers_API
                         Achievement  = new Achievement()
                         {
                             Description = "Drank water",
-                            DateAwarded = new DateTime(2022,12,15)
-                        }
+                            Points = 10,
+                            MissionGroup = 1
+                        },
+                        DateAwarded = new DateTime(2022,12,15)
                     },
                     new UserAchievement()
                     {
@@ -92,8 +94,10 @@ namespace JuniorRangers_API
                         Achievement  = new Achievement()
                         {
                             Description = "Slept",
-                            DateAwarded = new DateTime(2023,11,15)
-                        }
+                            Points = 10,
+                            MissionGroup = 1
+                        },
+                        DateAwarded = new DateTime(2023,11,15)
                     },
                     new UserAchievement()
                     {
@@ -112,8 +116,10 @@ namespace JuniorRangers_API
                         Achievement  = new Achievement()
                         {
                             Description = "Ate",
-                            DateAwarded = new DateTime(2022,01,15)
-                        }
+                            Points = 20,
+                            MissionGroup = 1
+                        },
+                        DateAwarded = new DateTime(2022,01,15)
                     },
                     new UserAchievement()
                     {
@@ -132,8 +138,10 @@ namespace JuniorRangers_API
                         Achievement  = new Achievement()
                         {
                             Description = "Studied",
-                            DateAwarded = new DateTime(2023,11,15)
-                        }
+                            Points = 15,
+                            MissionGroup = 2
+                        },
+                        DateAwarded = new DateTime(2023,11,15)
                     }
                 };
                 dataContext.UserAchievements.AddRange(UserAchievements);
