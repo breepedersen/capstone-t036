@@ -64,5 +64,41 @@ namespace JuniorRangers_API.Controllers
 
             return Ok(users);
         }
+
+
+        //POST METHODS
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateClassroom([FromQuery] string joinCode, [FromBody] ClassroomDto classroomCreate)
+        {
+            if (classroomCreate == null)
+                return BadRequest(ModelState);
+
+            var classrooms = _classroomRepository.GetClassrooms()
+                .Where(c => c.Name.Trim().ToUpper() == classroomCreate.Name.Trim().ToUpper())
+                .FirstOrDefault();
+
+            if (classrooms != null)
+            {
+                ModelState.AddModelError("", "Class name already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var classroomMap = _mapper.Map<Classroom>(classroomCreate);
+            classroomMap.JoinCode = joinCode;
+
+
+            if (!_classroomRepository.CreateClassroom(classroomMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
     }
 }

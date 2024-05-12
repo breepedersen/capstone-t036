@@ -11,5 +11,6 @@ namespace JuniorRangers_API.Dto
 
         [MaxLength]
         public String Content { get; set; }
+        public DateTime UploadDate { get; set; }
     }
 }

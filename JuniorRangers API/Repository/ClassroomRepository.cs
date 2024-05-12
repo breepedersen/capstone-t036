@@ -16,6 +16,12 @@ namespace JuniorRangers_API.Repository
             return _context.Classrooms.Any(c => c.ClassId == id);
         }
 
+        public bool CreateClassroom(Classroom classroom)
+        {
+            _context.Add(classroom);
+            return Save();
+        }
+
         public Classroom GetClassroom(int id)
         {
             return _context.Classrooms.Where(c => c.ClassId == id).FirstOrDefault();
@@ -29,6 +35,12 @@ namespace JuniorRangers_API.Repository
         public ICollection<User> GetUsersByClassroom(int classId)
         {
             return _context.Users.Where(u => u.Classroom.ClassId == classId).ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

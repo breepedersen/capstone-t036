@@ -13,13 +13,30 @@ namespace JuniorRangers_API.Controllers
     {
         private IMessageRepository _messageRepository;
         private IMapper _mapper;
+        private IClassroomRepository _classroomRepository;
+        private IUserRepository _userRepository;
 
-        public MessageController(IMessageRepository messageRepository, IMapper mapper) {
-        
+        public MessageController(IMessageRepository messageRepository, IUserRepository userRepository, IClassroomRepository classroomRepository, IMapper mapper) {
+
+            _classroomRepository = classroomRepository;
+            _userRepository = userRepository;
             _messageRepository = messageRepository;
             _mapper = mapper;
         }
 
+
+
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Message>))]
+        public IActionResult GetMessages()
+        {
+            var messages = _mapper.Map<List<MessageDto>>(_messageRepository.GetMessages());
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(messages);
+        }
 
         [HttpGet("{messageId}")]
         [ProducesResponseType(200, Type = typeof(Message))]
@@ -74,6 +91,91 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest(ModelState);
 
             return Ok(chats);
+        }
+
+
+        //POST METHODS
+        [HttpPost("Announcement")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateAnnouncement([FromQuery] string title, [FromQuery] string announcementText, [FromQuery] int userId, [FromQuery] int classId)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Message message = new Message();
+            var messageMap = _mapper.Map<Message>(message);
+            messageMap.MessageType = "Announcement";
+            messageMap.MessageTitle = title;
+            messageMap.MessageText = announcementText;
+            messageMap.Date = DateTime.Now;
+            messageMap.Sender = _userRepository.GetUser(userId);
+            messageMap.Classroom = _classroomRepository.GetClassroom(classId);
+
+
+            if (!_messageRepository.CreateMessage(messageMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
+
+        [HttpPost("Event")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateEvent([FromQuery] string title, [FromQuery] string eventText, [FromQuery] DateTime date, [FromQuery] int userId, [FromQuery] int classId)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Message message = new Message();
+            var messageMap = _mapper.Map<Message>(message);
+            messageMap.MessageType = "Event";
+            messageMap.MessageTitle = title;
+            messageMap.MessageText = eventText;
+            messageMap.Date = date;
+            messageMap.Sender = _userRepository.GetUser(userId);
+            messageMap.Classroom = _classroomRepository.GetClassroom(classId);
+
+
+            if (!_messageRepository.CreateMessage(messageMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
+
+        [HttpPost("Chat")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateChat([FromQuery] string chatText, [FromQuery] int userId, [FromQuery] int classId)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Message message = new Message();
+            var messageMap = _mapper.Map<Message>(message);
+            messageMap.MessageType = "Chat";
+            messageMap.MessageText = chatText;
+            messageMap.Date = DateTime.Now;
+            messageMap.Sender = _userRepository.GetUser(userId);
+            messageMap.Classroom = _classroomRepository.GetClassroom(classId);
+
+
+            if (!_messageRepository.CreateMessage(messageMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
         }
     }
 }

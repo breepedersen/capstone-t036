@@ -7,5 +7,7 @@ namespace JuniorRangers_API.Interfaces
         Classroom GetClassroom(int id);
         ICollection<User> GetUsersByClassroom(int id);
         bool ClassroomExists(int id);
+        bool CreateClassroom(Classroom classroom);
+        bool Save();
     }
 }

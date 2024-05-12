@@ -19,6 +19,12 @@ namespace JuniorRangers_API.Repository
             return _context.Achievements.Any(a => a.AchievementId == id);
         }
 
+        public bool CreateAchievement(Achievement achievement)
+        {
+            _context.Add(achievement);
+            return Save();
+        }
+
         public Achievement GetAchievement(int id)
         {
             return _context.Achievements.Where(a => a.AchievementId == id).FirstOrDefault();
@@ -42,6 +48,12 @@ namespace JuniorRangers_API.Repository
         public ICollection<User> GetUsersByAchievement(int achievementId)
         {
             return _context.UserAchievements.Where(a => a.AchievementId == achievementId).Select(u => u.User).ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

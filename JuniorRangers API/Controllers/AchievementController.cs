@@ -93,5 +93,40 @@ namespace JuniorRangers_API.Controllers
 
             return Ok(achievements);
         }
+
+
+        //POST METHODS
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateAchievement([FromBody] AchievementDto achievementCreate)
+        {
+            if (achievementCreate == null)
+                return BadRequest(ModelState);
+
+            var achievements = _achievementRepository.GetAchievements()
+                .Where(c => c.Description.Trim().ToUpper() == achievementCreate.Description.Trim().ToUpper())
+                .FirstOrDefault();
+
+            if (achievements != null)
+            {
+                ModelState.AddModelError("", "Achievement already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var achievementMap = _mapper.Map<Achievement>(achievementCreate);
+
+
+            if (!_achievementRepository.CreateAchievement(achievementMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
     }
 }

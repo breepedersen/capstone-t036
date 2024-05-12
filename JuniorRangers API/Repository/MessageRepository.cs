@@ -36,5 +36,22 @@ namespace JuniorRangers_API.Repository
         {
             return _context.Messages.Any(m => m.MessageID == messageId);
         }
+
+        public bool CreateMessage(Message message)
+        {
+            _context.Add(message);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public ICollection<Message> GetMessages()
+        {
+            return _context.Messages.OrderBy(m => m.MessageID).ToList();
+        }
     }
 }

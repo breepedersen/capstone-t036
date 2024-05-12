@@ -2,6 +2,7 @@ using JuniorRangers_API.Data;
 using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace JuniorRangers_API
 {
@@ -14,6 +15,7 @@ namespace JuniorRangers_API
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             builder.Services.AddTransient<Seed>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped<IUserRepository, UserRepository>();

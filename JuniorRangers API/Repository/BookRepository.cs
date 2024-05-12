@@ -17,6 +17,12 @@ namespace JuniorRangers_API.Repository
             return _context.Books.Any(b => b.BookId == bookId);
         }
 
+        public bool CreateBook(Book book)
+        {
+            _context.Add(book);
+            return Save();
+        }
+
         public Book GetBook(int bookId)
         {
             return _context.Books.Where(b => b.BookId == bookId).FirstOrDefault();
@@ -30,6 +36,12 @@ namespace JuniorRangers_API.Repository
         public ICollection<Book> GetBooksByClass(int classId)
         {
             return _context.Books.Where(b => b.Classroom.ClassId == classId).ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

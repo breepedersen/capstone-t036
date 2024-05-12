@@ -9,6 +9,9 @@ namespace JuniorRangers_API.Models
 
         [StringLength(20)]
         public String MessageType { get; set; }     //Announcement, Event, Chat
+        
+        [StringLength(20)]
+        public String? MessageTitle { get; set; }     //For Announcement, Event
 
         [StringLength(1000)]
         public String MessageText { get; set; }

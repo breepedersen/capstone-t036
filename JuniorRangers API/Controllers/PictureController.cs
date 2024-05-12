@@ -12,14 +12,32 @@ namespace JuniorRangers_API.Controllers
     public class PictureController : Controller
     {
         private IPictureRepository _pictureRepository;
+        private IUserRepository _userRepository;
+        private IAlbumRepository _albumRepository;
+        private IPostRepository _postRepository;
         private IMapper _mapper;
 
-        public PictureController(IPictureRepository pictureRepository, IMapper mapper)
+        public PictureController(IPictureRepository pictureRepository, IUserRepository userRepository, IAlbumRepository albumRepository, IPostRepository postRepository, IMapper mapper)
         {
             _pictureRepository = pictureRepository;
+            _userRepository = userRepository;
+            _albumRepository = albumRepository;
+            _postRepository = postRepository;
             _mapper = mapper;
         }
 
+
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Picture>))]
+        public IActionResult GetPictures()
+        {
+            var pictures = _mapper.Map<List<PictureDto>>(_pictureRepository.GetPictures());
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(pictures);
+        }
 
         [HttpGet("{picId}")]
         [ProducesResponseType(200, Type = typeof(Picture))]
@@ -29,7 +47,7 @@ namespace JuniorRangers_API.Controllers
             if (!_pictureRepository.PictureExists(picId))
                 return NotFound();
 
-            var picture = _mapper.Map<Picture>(_pictureRepository.GetPicture(picId));
+            var picture = _mapper.Map<PictureDto>(_pictureRepository.GetPicture(picId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -42,7 +60,7 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetPicturesByPost(int postId)
         {
-            var pictures = _mapper.Map<List<Picture>>(_pictureRepository.GetPicturesByPost(postId));
+            var pictures = _mapper.Map<List<PictureDto>>(_pictureRepository.GetPicturesByPost(postId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -55,12 +73,54 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetPicturesByAlbum(int albumId)
         {
-            var pictures = _mapper.Map<List<Picture>>(_pictureRepository.GetPicturesByAlbum(albumId));
+            var pictures = _mapper.Map<List<PictureDto>>(_pictureRepository.GetPicturesByAlbum(albumId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             return Ok(pictures);
+        }
+
+
+        //POST METHODS
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreatePicture([FromBody] PictureDto pictureCreate, [FromQuery] int userId, [FromQuery] int? albumId, [FromQuery] int? postId)
+        {
+/*            if (pictureCreate == null)
+                return BadRequest(ModelState);
+
+            var pictures = _pictureRepository.GetPictures()
+                .Where(c => c.Username.Trim().ToUpper() == pictureCreate.Username.Trim().ToUpper())
+                .FirstOrDefault();
+
+            if (pictures != null)
+            {
+                ModelState.AddModelError("", "Picture already exists");
+                return StatusCode(422, ModelState);
+            }*/
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var pictureMap = _mapper.Map<Picture>(pictureCreate);
+            pictureMap.UploadDate = DateTime.Now;
+            pictureMap.Uploader = _userRepository.GetUser(userId);
+            if (albumId != null) 
+                pictureMap.Album = _albumRepository.GetAlbum((int)albumId);
+            if (postId != null)
+                pictureMap.Post = _postRepository.GetPost((int)postId);
+            
+
+
+            if (!_pictureRepository.CreatePicture(pictureMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
         }
     }
 }

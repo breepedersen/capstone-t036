@@ -13,9 +13,20 @@ namespace JuniorRangers_API.Repository
             _context = context;
         }
 
+        public bool CreatePost(Post post)
+        {
+            _context.Add(post);
+            return Save();
+        }
+
         public Post GetPost(int postId)
         {
             return _context.Posts.Where(p => p.PostId == postId).FirstOrDefault();
+        }
+
+        public ICollection<Post> GetPosts()
+        {
+            return _context.Posts.OrderBy(p => p.PostId).ToList();
         }
 
         public ICollection<Post> GetPostsByClassroom(int classId)
@@ -26,6 +37,12 @@ namespace JuniorRangers_API.Repository
         public bool PostExists(int postId)
         {
             return _context.Posts.Any(p => p.PostId == postId);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

@@ -29,6 +29,7 @@ namespace JuniorRangers_API
                             Role = "Ranger",
                             Classroom = new Classroom()
                             {
+                                Name = "Team Super",
                                 JoinCode = "class1",
                                 Albums = new List<Album>()
                                 {
@@ -63,8 +64,8 @@ namespace JuniorRangers_API
                                 },
                                 Messages = new List<Message>()
                                 {
-                                    new Message { MessageType = "Announcement", MessageText = "Today will be a cold day", Date = DateTime.Now, Sender = new User { Username = "gregyy", FirstName = "Greg", LastName = "Polby", Password = "123", Role = "Ranger" } },
-                                    new Message { MessageType = "Event", MessageText = "A field trip to the mountains", Date = new DateTime(2024,06,12), Sender = new User { Username = "TheRanger", FirstName = "Eve", LastName = "Smith", Password = "123", Role = "Ranger" }},
+                                    new Message { MessageType = "Announcement", MessageTitle = "Weather Today", MessageText = "Today will be a cold day", Date = DateTime.Now, Sender = new User { Username = "gregyy", FirstName = "Greg", LastName = "Polby", Password = "123", Role = "Ranger" } },
+                                    new Message { MessageType = "Event", MessageTitle = "Mountain Trip", MessageText = "A field trip to the mountains", Date = new DateTime(2024,06,12), Sender = new User { Username = "TheRanger", FirstName = "Eve", LastName = "Smith", Password = "123", Role = "Ranger" }},
                                     new Message { MessageType = "Chat", MessageText = "Hi all", Date = DateTime.Now , Sender = new User { Username = "First", FirstName = "Adam", LastName = "Smith", Password = "123", Role = "Ranger" }}
                                 }
                             }
@@ -88,7 +89,8 @@ namespace JuniorRangers_API
                             Role = "Student",
                             Classroom = new Classroom()
                             {
-                                JoinCode = "class2" 
+                                JoinCode = "class2",
+                                Name = "Junior Rangers 2",
                             }
                         },
                         Achievement  = new Achievement()
@@ -110,7 +112,8 @@ namespace JuniorRangers_API
                             Role = "Student",
                             Classroom = new Classroom()
                             {
-                                JoinCode = "class3"
+                                JoinCode = "class3",
+                                Name = "The Rangers",
                             }
                         },
                         Achievement  = new Achievement()
@@ -132,7 +135,8 @@ namespace JuniorRangers_API
                             Role = "Student",
                             Classroom = new Classroom()
                             {
-                                JoinCode = "class4"
+                                JoinCode = "class4",
+                                Name = "Team 4",
                             }
                         },
                         Achievement  = new Achievement()

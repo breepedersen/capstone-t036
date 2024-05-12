@@ -13,9 +13,20 @@ namespace JuniorRangers_API.Repository
             _context = context;
         }
 
+        public bool CreatePicture(Picture picture)
+        {
+            _context.Add(picture);
+            return Save();
+        }
+
         public Picture GetPicture(int picId)
         {
             return _context.Pictures.Where(p => p.PictureId == picId).FirstOrDefault();
+        }
+
+        public ICollection<Picture> GetPictures()
+        {
+            return _context.Pictures.OrderBy(p => p.PictureId).ToList();
         }
 
         public ICollection<Picture> GetPicturesByAlbum(int albumId)
@@ -31,6 +42,12 @@ namespace JuniorRangers_API.Repository
         public bool PictureExists(int picId)
         {
             return _context.Pictures.Any(p => p.PictureId == picId);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

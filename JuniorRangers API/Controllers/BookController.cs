@@ -12,11 +12,13 @@ namespace JuniorRangers_API.Controllers
     public class BookController : Controller
     {
         private IBookRepository _bookRepository;
+        private IClassroomRepository _classroomRepository;
         private IMapper _mapper;
 
-        public BookController(IBookRepository bookRepository, IMapper mapper) 
+        public BookController(IBookRepository bookRepository, IClassroomRepository classroomRepository, IMapper mapper) 
         {
             _bookRepository = bookRepository;
+            _classroomRepository = classroomRepository;
             _mapper = mapper;
         }
 
@@ -60,6 +62,42 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest(ModelState);
 
             return Ok(books);
+        }
+
+
+        //POST METHODS
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateBook([FromQuery] int classId, [FromBody] BookDto bookCreate)
+        {
+            if (bookCreate == null)
+                return BadRequest(ModelState);
+
+            var books = _bookRepository.GetBooks()
+                .Where(b => b.Title.Trim().ToUpper() == bookCreate.Title.Trim().ToUpper())
+                .FirstOrDefault();
+
+            if (books != null)
+            {
+                ModelState.AddModelError("", "Book already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var bookMap = _mapper.Map<Book>(bookCreate);
+            bookMap.Classroom = _classroomRepository.GetClassroom(classId);
+
+
+            if (!_bookRepository.CreateBook(bookMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
         }
     }
 }

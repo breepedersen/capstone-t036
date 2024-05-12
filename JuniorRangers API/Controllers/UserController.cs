@@ -32,7 +32,6 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest(ModelState);
 
             return Ok(user);
-            
         }
 
         [HttpGet("{userId}")]
@@ -51,21 +50,42 @@ namespace JuniorRangers_API.Controllers
             return Ok(user);
         }
 
-/*        [HttpGet("{userId}")]
-        [ProducesResponseType(200, Type = typeof(User))]
-        [ProducesResponseType(400)]
-        public IActionResult GetUser(String fname, String lname)
-        {
-            if (!_userRepository.UserExists(fname, lname))
-                return NotFound();
 
-            var user = _userRepository.GetUser(fname, lname);
+
+        //POST METHODS
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateUser([FromQuery] string password,[FromBody] UserDto userCreate)
+        {
+            if (userCreate == null)
+                return BadRequest(ModelState);
+
+            var users = _userRepository.GetUsers()
+                .Where(c => c.Username.Trim().ToUpper() == userCreate.Username.Trim().ToUpper())
+                .FirstOrDefault();
+
+            if (users != null)
+            {
+                ModelState.AddModelError("", "User already exists");
+                return StatusCode(422, ModelState);
+            }
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return Ok(user);
-        }*/
+            var userMap = _mapper.Map<User>(userCreate);
+            userMap.Password = password;
+
+
+            if (!_userRepository.CreateUser(userMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
 
     }
 }

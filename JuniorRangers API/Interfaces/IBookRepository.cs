@@ -8,5 +8,7 @@ namespace JuniorRangers_API.Interfaces
         ICollection<Book> GetBooksByClass(int classId);
         Book GetBook(int bookId);
         bool BookExists(int bookId);
+        bool CreateBook(Book book);
+        bool Save();
     }
 }
