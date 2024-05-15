@@ -4,6 +4,7 @@ using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.Intrinsics.X86;
 
 namespace JuniorRangers_API.Controllers
 {
@@ -121,6 +122,37 @@ namespace JuniorRangers_API.Controllers
             }
 
             return Ok("Successfully created");
+        }
+
+
+        //PUT METHODS
+        [HttpPut("pictureId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdatePicture(int pictureId, [FromBody] PictureDto updatedPicture)
+        {
+            if (updatedPicture == null)
+                return BadRequest(ModelState);
+
+            if (pictureId != updatedPicture.PictureId)
+                return BadRequest(ModelState);
+
+            if (!_pictureRepository.PictureExists(pictureId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var pictureMap = _mapper.Map<Picture>(updatedPicture);
+
+            if (!_pictureRepository.UpdatePicture(pictureMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating picture");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
     }
 }

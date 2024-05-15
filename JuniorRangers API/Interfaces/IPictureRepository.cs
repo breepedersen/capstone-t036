@@ -10,6 +10,7 @@ namespace JuniorRangers_API.Interfaces
         ICollection<Picture> GetPicturesByAlbum(int albumId);
         ICollection<Picture> GetPicturesByPost(int postId);
         bool CreatePicture(Picture picture);
+        bool UpdatePicture(Picture picture);
         bool Save();
     }
 }

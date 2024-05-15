@@ -4,6 +4,7 @@ using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace JuniorRangers_API.Controllers
 {
@@ -98,6 +99,37 @@ namespace JuniorRangers_API.Controllers
             }
 
             return Ok("Successfully created");
+        }
+
+
+        //PUT METHODS
+        [HttpPut("bookId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateBook(int bookId, [FromBody] BookDto updatedBook)
+        {
+            if (updatedBook == null)
+                return BadRequest(ModelState);
+
+            if (bookId != updatedBook.BookId)
+                return BadRequest(ModelState);
+
+            if (!_bookRepository.BookExists(bookId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var bookMap = _mapper.Map<Book>(updatedBook);
+
+            if (!_bookRepository.UpdateBook(bookMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating book");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
     }
 }

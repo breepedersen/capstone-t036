@@ -55,5 +55,11 @@ namespace JuniorRangers_API.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateAchievement(Achievement achievement)
+        {
+            _context.Update(achievement);
+            return Save();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using JuniorRangers_API.Dto;
 using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
+using JuniorRangers_API.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.X509Certificates;
@@ -85,6 +86,39 @@ namespace JuniorRangers_API.Controllers
             }
 
             return Ok("Successfully created");
+        }
+
+
+        //PUT METHODS
+        [HttpPut("userId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateUser(int userId, [FromBody] UserDto updatedUser)
+        {
+            if (updatedUser == null)
+                return BadRequest(ModelState);
+
+            if (userId != updatedUser.UserId)
+                return BadRequest(ModelState);
+
+            if (!_userRepository.UserExists(userId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var userMap = _mapper.Map<User>(updatedUser);
+            userMap.Password = _userRepository.GetUser(userId).Password;
+
+
+            if (!_userRepository.UpdateUser(userMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating user");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
 
     }

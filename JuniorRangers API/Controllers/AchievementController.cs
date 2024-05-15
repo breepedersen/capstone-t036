@@ -128,5 +128,36 @@ namespace JuniorRangers_API.Controllers
 
             return Ok("Successfully created");
         }
+
+
+        //PUT METHODS
+        [HttpPut("achievementId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateAchievement(int achievementId, [FromBody] AchievementDto updatedAchievement)
+        {
+            if (updatedAchievement == null)
+                return BadRequest(ModelState);
+
+            if (achievementId != updatedAchievement.AchievementId)
+                return BadRequest(ModelState);
+
+            if (!_achievementRepository.AchievementExists(achievementId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var achievementMap = _mapper.Map<Achievement>(updatedAchievement);
+
+            if (!_achievementRepository.UpdateAchievement(achievementMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating achievement");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

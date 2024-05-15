@@ -44,5 +44,11 @@ namespace JuniorRangers_API.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateAlbum(Album album)
+        {
+            _context.Update(album);
+            return Save();
+        }
     }
 }

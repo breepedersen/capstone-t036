@@ -11,6 +11,7 @@ namespace JuniorRangers_API.Interfaces
         ICollection<Achievement> GetAchievementsByMissionGroup(int missonGroupId);
         bool AchievementExists(int achievementId);
         bool CreateAchievement(Achievement achievement);
+        bool UpdateAchievement(Achievement achievement);
         bool Save();
     }
 }

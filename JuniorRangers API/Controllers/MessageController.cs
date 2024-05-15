@@ -177,5 +177,36 @@ namespace JuniorRangers_API.Controllers
 
             return Ok("Successfully created");
         }
+
+
+        //PUT METHODS
+        [HttpPut("messageId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateMessage(int messageId, [FromBody] MessageDto updatedMessage)
+        {
+            if (updatedMessage == null)
+                return BadRequest(ModelState);
+
+            if (messageId != updatedMessage.MessageID)
+                return BadRequest(ModelState);
+
+            if (!_messageRepository.MessageExists(messageId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var messageMap = _mapper.Map<Message>(updatedMessage);
+
+            if (!_messageRepository.UpdateMessage(messageMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating message");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

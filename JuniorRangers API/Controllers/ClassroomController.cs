@@ -100,5 +100,37 @@ namespace JuniorRangers_API.Controllers
 
             return Ok("Successfully created");
         }
+
+
+        //PUT METHODS
+        [HttpPut("classId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateClassroom(int classId, [FromBody] ClassroomDto updatedClassroom)
+        {
+            if (updatedClassroom == null)
+                return BadRequest(ModelState);
+
+            if (classId != updatedClassroom.ClassId)
+                return BadRequest(ModelState);
+
+            if (!_classroomRepository.ClassroomExists(classId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var classroomMap = _mapper.Map<Classroom>(updatedClassroom);
+            classroomMap.JoinCode = _classroomRepository.GetClassroom(classId).JoinCode;
+
+            if (!_classroomRepository.UpdateClassroom(classroomMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating classroom");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

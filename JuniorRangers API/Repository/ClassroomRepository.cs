@@ -42,5 +42,12 @@ namespace JuniorRangers_API.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateClassroom(Classroom classroom)
+        {
+            _context.ChangeTracker.Clear();
+            _context.Update(classroom);
+            return Save();
+        }
     }
 }

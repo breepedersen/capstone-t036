@@ -108,5 +108,36 @@ namespace JuniorRangers_API.Controllers
 
             return Ok("Successfully created");
         }
+
+
+        //PUT METHODS
+        [HttpPut("postId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdatePost(int postId, [FromBody] PostDto updatedPost)
+        {
+            if (updatedPost == null)
+                return BadRequest(ModelState);
+
+            if (postId != updatedPost.PostId)
+                return BadRequest(ModelState);
+
+            if (!_postRepository.PostExists(postId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var postMap = _mapper.Map<Post>(updatedPost);
+
+            if (!_postRepository.UpdatePost(postMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating post");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }

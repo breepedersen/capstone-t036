@@ -98,6 +98,37 @@ namespace JuniorRangers_API.Controllers
 
             return Ok("Successfully created");
         }
+
+
+        //PUT METHODS
+        [HttpPut("albumId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateAlbum(int albumId, [FromBody] AlbumDto updatedAlbum)
+        {
+            if (updatedAlbum == null)
+                return BadRequest(ModelState);
+
+            if (albumId != updatedAlbum.AlbumId)
+                return BadRequest(ModelState);
+
+            if (!_albumRepository.AlbumExists(albumId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var albumMap = _mapper.Map<Album>(updatedAlbum);
+
+            if (!_albumRepository.UpdateAlbum(albumMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating album");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 
 
