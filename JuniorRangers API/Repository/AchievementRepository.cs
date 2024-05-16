@@ -25,6 +25,12 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
+        public bool DeleteAchievement(Achievement achievement)
+        {
+            _context.Remove(achievement);
+            return Save();
+        }
+
         public Achievement GetAchievement(int id)
         {
             return _context.Achievements.Where(a => a.AchievementId == id).FirstOrDefault();

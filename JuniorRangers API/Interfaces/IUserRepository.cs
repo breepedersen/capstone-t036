@@ -10,6 +10,7 @@ namespace JuniorRangers_API.Interfaces
         bool UserExists(string fname, string lname);
         bool CreateUser(User user);
         bool UpdateUser(User user);
+        bool DeleteUser(User user);
         bool Save();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JuniorRangers_API.Dto;
 using JuniorRangers_API.Interfaces;
+using JuniorRangers_API.Migrations;
 using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
 using Microsoft.AspNetCore.Components;
@@ -15,11 +16,13 @@ namespace JuniorRangers_API.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IClassroomRepository _classroomRepository;
         private readonly IMapper _mapper;
 
-        public UserController(IUserRepository userRepository, IMapper mapper)
+        public UserController(IUserRepository userRepository, IClassroomRepository classroomRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _classroomRepository = classroomRepository;
             _mapper = mapper;
         }
 
@@ -94,7 +97,7 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateUser(int userId, [FromBody] UserDto updatedUser)
+        public IActionResult UpdateUser(int userId, [FromQuery] string? password, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
         {
             if (updatedUser == null)
                 return BadRequest(ModelState);
@@ -109,13 +112,71 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest();
 
             var userMap = _mapper.Map<User>(updatedUser);
-            userMap.Password = _userRepository.GetUser(userId).Password;
 
+            //change password
+            string existingPassword = _userRepository.GetUser(userId).Password;
+            if (password != null)
+                if (password == existingPassword)
+                {
+                    ModelState.AddModelError("", "Please choose a different password.");
+                    return StatusCode(500, ModelState);
+                }
+                else {
+                    userMap.Password = password;
+                }
+            else
+                userMap.Password = existingPassword; //TODO: make change password seperate function
+
+            //change classroom
+            if (classId != null)
+            {
+                Classroom currentClass = _userRepository.GetUser(userId).Classroom;
+                Classroom updatedClass = _classroomRepository.GetClassroom((int)classId);
+                if (classId == (currentClass == null? null : currentClass.ClassId))
+                {
+                    ModelState.AddModelError("", "Please choose a different classroom.");
+                    return StatusCode(500, ModelState);
+                }
+                else
+                {
+                    userMap.Classroom = updatedClass;
+                }
+            } else
+            {
+                userMap.Classroom = null;
+            }
 
             if (!_userRepository.UpdateUser(userMap))
             {
                 ModelState.AddModelError("", "Something went wrong updating user");
                 return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+
+
+        //DELETE METHODS
+        [HttpDelete("userId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteUser(int userId)
+        {
+            if (!_userRepository.UserExists(userId))
+            {
+                return NotFound();
+            }
+
+            var userToDelete = _userRepository.GetUser(userId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_userRepository.DeleteUser(userToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting user");
             }
 
             return NoContent();

@@ -129,6 +129,32 @@ namespace JuniorRangers_API.Controllers
 
             return NoContent();
         }
+
+
+        //DELETE METHODS
+        [HttpDelete("achievementId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteAlbum(int albumId)
+        {
+            if (!_albumRepository.AlbumExists(albumId))
+            {
+                return NotFound();
+            }
+
+            var albumToDelete = _albumRepository.GetAlbum(albumId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_albumRepository.DeleteAlbum(albumToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting album");
+            }
+
+            return NoContent();
+        }
     }
 
 

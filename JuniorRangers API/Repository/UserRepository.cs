@@ -30,6 +30,12 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
+        public bool DeleteUser(User user)
+        {
+            _context.Remove(user);
+            return Save();
+        }
+
         public User GetUser(int id)
         {
             return _context.Users.Where(u => u.UserId == id).FirstOrDefault();
@@ -67,5 +73,7 @@ namespace JuniorRangers_API.Repository
         {
             return _context.Users.Any(u => u.FirstName == firstname && u.LastName == lastname);
         }
+
+
     }
 }

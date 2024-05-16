@@ -10,6 +10,7 @@ namespace JuniorRangers_API.Interfaces
         ICollection<Album> GetAlbumsByClassroom(int classId);
         bool CreateAlbum(Album album);
         bool UpdateAlbum(Album album);
+        bool DeleteAlbum(Album album);
         bool Save();
     }
 }

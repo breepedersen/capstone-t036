@@ -10,6 +10,7 @@ namespace JuniorRangers_API.Interfaces
         ICollection<Post> GetPostsByClassroom(int classId);
         bool CreatePost(Post post);
         bool UpdatePost(Post post);
+        bool DeletePost(Post post);
         bool Save();
     }
 }

@@ -24,6 +24,12 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
+        public bool DeleteAlbum(Album album)
+        {
+            _context.Remove(album);
+            return Save();
+        }
+
         public Album GetAlbum(int albumId)
         {
             return _context.Albums.Where(a => a.AlbumId == albumId).FirstOrDefault();

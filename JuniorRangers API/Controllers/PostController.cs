@@ -139,5 +139,31 @@ namespace JuniorRangers_API.Controllers
 
             return NoContent();
         }
+
+
+        //DELETE METHODS
+        [HttpDelete("postId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeletePost(int postId)
+        {
+            if (!_postRepository.PostExists(postId))
+            {
+                return NotFound();
+            }
+
+            var postToDelete = _postRepository.GetPost(postId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_postRepository.DeletePost(postToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting post");
+            }
+
+            return NoContent();
+        }
     }
 }

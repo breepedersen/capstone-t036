@@ -132,5 +132,31 @@ namespace JuniorRangers_API.Controllers
 
             return NoContent();
         }
+
+
+        //DELETE METHODS
+        [HttpDelete("classId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteClassroom(int classId)
+        {
+            if (!_classroomRepository.ClassroomExists(classId))
+            {
+                return NotFound();
+            }
+
+            var classroomToDelete = _classroomRepository.GetClassroom(classId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_classroomRepository.DeleteClassroom(classroomToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting classroom");
+            }
+
+            return NoContent();
+        }
     }
 }

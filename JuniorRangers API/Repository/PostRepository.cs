@@ -19,6 +19,12 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
+        public bool DeletePost(Post post)
+        {
+            _context.Remove(post);
+            return Save();
+        }
+
         public Post GetPost(int postId)
         {
             return _context.Posts.Where(p => p.PostId == postId).FirstOrDefault();

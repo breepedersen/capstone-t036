@@ -154,5 +154,31 @@ namespace JuniorRangers_API.Controllers
 
             return NoContent();
         }
+
+
+        //DELETE METHODS
+        [HttpDelete("pictureId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeletePicture(int pictureId)
+        {
+            if (!_pictureRepository.PictureExists(pictureId))
+            {
+                return NotFound();
+            }
+
+            var pictureToDelete = _pictureRepository.GetPicture(pictureId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_pictureRepository.DeletePicture(pictureToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting picture");
+            }
+
+            return NoContent();
+        }
     }
 }

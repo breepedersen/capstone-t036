@@ -159,5 +159,31 @@ namespace JuniorRangers_API.Controllers
 
             return NoContent();
         }
+
+
+        //DELETE METHODS
+        [HttpDelete("achievementId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteAchievement(int achievementId)
+        {
+            if (!_achievementRepository.AchievementExists(achievementId))
+            {
+                return NotFound();
+            }
+
+            var achievementToDelete = _achievementRepository.GetAchievement(achievementId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_achievementRepository.DeleteAchievement(achievementToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting category");
+            }
+
+            return NoContent();
+        }
     }
 }

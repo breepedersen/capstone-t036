@@ -23,6 +23,12 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
+        public bool DeleteBook(Book book)
+        {
+            _context.Remove(book);
+            return Save();
+        }
+
         public Book GetBook(int bookId)
         {
             return _context.Books.Where(b => b.BookId == bookId).FirstOrDefault();

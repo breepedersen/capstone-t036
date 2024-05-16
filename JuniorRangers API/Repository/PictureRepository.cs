@@ -19,6 +19,12 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
+        public bool DeletePicture(Picture picture)
+        {
+            _context.Remove(picture);
+            return Save();
+        }
+
         public Picture GetPicture(int picId)
         {
             return _context.Pictures.Where(p => p.PictureId == picId).FirstOrDefault();

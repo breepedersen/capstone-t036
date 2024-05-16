@@ -12,6 +12,7 @@ namespace JuniorRangers_API.Interfaces
         bool MessageExists(int messageId);
         bool CreateMessage(Message message);
         bool UpdateMessage(Message message);
+        bool DeleteMessage(Message message);
         bool Save();
     }
 }

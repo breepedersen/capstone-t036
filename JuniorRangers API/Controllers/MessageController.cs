@@ -208,5 +208,31 @@ namespace JuniorRangers_API.Controllers
 
             return NoContent();
         }
+
+
+        //DELETE METHODS
+        [HttpDelete("messageId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteMessage(int messageId)
+        {
+            if (!_messageRepository.MessageExists(messageId))
+            {
+                return NotFound();
+            }
+
+            var messageToDelete = _messageRepository.GetMessage(messageId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_messageRepository.DeleteMessage(messageToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting message");
+            }
+
+            return NoContent();
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace JuniorRangers_API.Interfaces
         bool ClassroomExists(int id);
         bool CreateClassroom(Classroom classroom);
         bool UpdateClassroom(Classroom classroom);
+        bool DeleteClassroom(Classroom classroom);
         bool Save();
     }
 }

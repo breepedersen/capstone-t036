@@ -59,5 +59,11 @@ namespace JuniorRangers_API.Repository
             _context.Update(message);
             return Save();
         }
+
+        public bool DeleteMessage(Message message)
+        {
+            _context.Remove(message);
+            return Save();
+        }
     }
 }

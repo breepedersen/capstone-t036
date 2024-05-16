@@ -10,6 +10,7 @@ namespace JuniorRangers_API.Interfaces
         bool BookExists(int bookId);
         bool CreateBook(Book book);
         bool UpdateBook(Book book);
+        bool DeleteBook(Book book);
         bool Save();
     }
 }

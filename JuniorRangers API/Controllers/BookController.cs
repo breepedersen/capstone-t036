@@ -131,5 +131,31 @@ namespace JuniorRangers_API.Controllers
 
             return NoContent();
         }
+
+
+        //DELETE METHODS
+        [HttpDelete("bookId")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteBook(int bookId)
+        {
+            if (!_bookRepository.BookExists(bookId))
+            {
+                return NotFound();
+            }
+
+            var BookToDelete = _bookRepository.GetBook(bookId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_bookRepository.DeleteBook(BookToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting book");
+            }
+
+            return NoContent();
+        }
     }
 }
