@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": false,
+      "restoreTime": "2024-05-17T01:38:49.3378191Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2024-05-17T01:24:03.84666Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "b2bb1335-397f-45f9-9593-0199b58ebe50"
+    },
+    "mssql1.resourceGroupLocation": {
+      "Name": "mssql1.resourceGroupLocation",
+      "Type": "location",
+      "Value": "australiaeast"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "JRApp"
+    }
+  }
+}

@@ -12,14 +12,19 @@ namespace JuniorRangers_API.Data
         }
 
         public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Book> Books { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }
 
         //to setup linking of many-to-many tables (without going directly into database)
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //UserAchievements many-to-many
             modelBuilder.Entity<UserAchievement>()
                 .HasKey(ua => new { ua.UserId, ua.AchievementId });
             modelBuilder.Entity<UserAchievement>()

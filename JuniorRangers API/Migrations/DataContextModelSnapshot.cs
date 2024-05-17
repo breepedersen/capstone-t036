@@ -17,10 +17,10 @@ namespace JuniorRangers_API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.29")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("JuniorRangers_API.Models.Achievement", b =>
                 {
@@ -28,18 +28,78 @@ namespace JuniorRangers_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AchievementId"), 1L, 1);
-
-                    b.Property<DateTime>("DateAwarded")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AchievementId"));
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("MissionGroup")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
 
                     b.HasKey("AchievementId");
 
                     b.ToTable("Achievements");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Album", b =>
+                {
+                    b.Property<int>("AlbumId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlbumId"));
+
+                    b.Property<int>("ClassroomClassId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("AlbumId");
+
+                    b.HasIndex("ClassroomClassId");
+
+                    b.ToTable("Albums");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Book", b =>
+                {
+                    b.Property<int>("BookId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
+
+                    b.Property<int>("ClassroomClassId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("UploadDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BookId");
+
+                    b.HasIndex("ClassroomClassId");
+
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Classroom", b =>
@@ -48,9 +108,14 @@ namespace JuniorRangers_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClassId"));
 
                     b.Property<string>("JoinCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -65,20 +130,108 @@ namespace JuniorRangers_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageID"));
 
                     b.Property<int>("ClassroomClassId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Text")
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MessageText")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("MessageTitle")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("MessageType")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("SenderUserId")
+                        .HasColumnType("int");
 
                     b.HasKey("MessageID");
 
                     b.HasIndex("ClassroomClassId");
 
+                    b.HasIndex("SenderUserId");
+
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Picture", b =>
+                {
+                    b.Property<int>("PictureId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PictureId"));
+
+                    b.Property<int?>("AlbumId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UploadDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UploaderUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PictureId");
+
+                    b.HasIndex("AlbumId");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UploaderUserId");
+
+                    b.ToTable("Pictures");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Post", b =>
+                {
+                    b.Property<int>("PostId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PostId"));
+
+                    b.Property<int>("ClassroomClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PostDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PosterUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.HasKey("PostId");
+
+                    b.HasIndex("ClassroomClassId");
+
+                    b.HasIndex("PosterUserId");
+
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.User", b =>
@@ -87,26 +240,35 @@ namespace JuniorRangers_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int>("ClassroomClassId")
+                    b.Property<int?>("ClassroomClassId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("UserId");
 
@@ -123,11 +285,36 @@ namespace JuniorRangers_API.Migrations
                     b.Property<int>("AchievementId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateAwarded")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("UserId", "AchievementId");
 
                     b.HasIndex("AchievementId");
 
                     b.ToTable("UserAchievements");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Album", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Classroom", "Classroom")
+                        .WithMany("Albums")
+                        .HasForeignKey("ClassroomClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Classroom");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Book", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Classroom", "Classroom")
+                        .WithMany("Books")
+                        .HasForeignKey("ClassroomClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Classroom");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Message", b =>
@@ -138,16 +325,60 @@ namespace JuniorRangers_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("JuniorRangers_API.Models.User", "Sender")
+                        .WithMany("Messages")
+                        .HasForeignKey("SenderUserId");
+
                     b.Navigation("Classroom");
+
+                    b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Picture", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Album", "Album")
+                        .WithMany("Pictures")
+                        .HasForeignKey("AlbumId");
+
+                    b.HasOne("JuniorRangers_API.Models.Post", "Post")
+                        .WithMany("Pictures")
+                        .HasForeignKey("PostId");
+
+                    b.HasOne("JuniorRangers_API.Models.User", "Uploader")
+                        .WithMany("Picures")
+                        .HasForeignKey("UploaderUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Album");
+
+                    b.Navigation("Post");
+
+                    b.Navigation("Uploader");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.Post", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Classroom", "Classroom")
+                        .WithMany("Posts")
+                        .HasForeignKey("ClassroomClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.User", "Poster")
+                        .WithMany("Posts")
+                        .HasForeignKey("PosterUserId");
+
+                    b.Navigation("Classroom");
+
+                    b.Navigation("Poster");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.User", b =>
                 {
                     b.HasOne("JuniorRangers_API.Models.Classroom", "Classroom")
                         .WithMany("Users")
-                        .HasForeignKey("ClassroomClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClassroomClassId");
 
                     b.Navigation("Classroom");
                 });
@@ -176,15 +407,37 @@ namespace JuniorRangers_API.Migrations
                     b.Navigation("UserAchievement");
                 });
 
+            modelBuilder.Entity("JuniorRangers_API.Models.Album", b =>
+                {
+                    b.Navigation("Pictures");
+                });
+
             modelBuilder.Entity("JuniorRangers_API.Models.Classroom", b =>
                 {
+                    b.Navigation("Albums");
+
+                    b.Navigation("Books");
+
                     b.Navigation("Messages");
+
+                    b.Navigation("Posts");
 
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("JuniorRangers_API.Models.Post", b =>
+                {
+                    b.Navigation("Pictures");
+                });
+
             modelBuilder.Entity("JuniorRangers_API.Models.User", b =>
                 {
+                    b.Navigation("Messages");
+
+                    b.Navigation("Picures");
+
+                    b.Navigation("Posts");
+
                     b.Navigation("UserAchievement");
                 });
 #pragma warning restore 612, 618
