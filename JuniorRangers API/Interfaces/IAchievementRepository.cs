@@ -12,6 +12,7 @@ namespace JuniorRangers_API.Interfaces
         bool AchievementExists(int achievementId);
         bool CreateAchievement(Achievement achievement);
         bool UpdateAchievement(Achievement achievement);
+        bool AwardAchievement(UserAchievement userAchievement);
         bool DeleteAchievement(Achievement achievement);
         bool Save();
     }

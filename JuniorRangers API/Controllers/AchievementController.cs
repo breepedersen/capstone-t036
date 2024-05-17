@@ -12,11 +12,13 @@ namespace JuniorRangers_API.Controllers
     public class AchievementController : Controller
     {
         private IAchievementRepository _achievementRepository;
+        private IUserRepository _userRepository;
         private IMapper _mapper;
 
-        public AchievementController(IAchievementRepository achievementRepository, IMapper mapper)
+        public AchievementController(IAchievementRepository achievementRepository, IUserRepository userRepository, IMapper mapper)
         {
             _achievementRepository = achievementRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -127,6 +129,39 @@ namespace JuniorRangers_API.Controllers
             }
 
             return Ok("Successfully created");
+        }
+
+
+        [HttpPost("userAchievement")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult AwardAchievement([FromQuery] int achievementId, [FromQuery] int userId)
+        {
+
+            if (!_achievementRepository.AchievementExists(achievementId))
+                return NotFound();
+            if (!_userRepository.UserExists(userId))
+                return NotFound();
+
+            var userAchievement = new UserAchievement();
+
+            userAchievement.User = _userRepository.GetUser(userId);
+            userAchievement.Achievement = _achievementRepository.GetAchievement(achievementId);
+            userAchievement.UserId = userId;
+            userAchievement.AchievementId = achievementId;
+            userAchievement.DateAwarded = DateTime.Now;
+
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_achievementRepository.AwardAchievement(userAchievement))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully awarded");
         }
 
 

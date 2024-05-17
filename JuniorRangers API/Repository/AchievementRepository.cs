@@ -19,6 +19,12 @@ namespace JuniorRangers_API.Repository
             return _context.Achievements.Any(a => a.AchievementId == id);
         }
 
+        public bool AwardAchievement(UserAchievement userAchievement)
+        {
+            _context.Add(userAchievement);
+            return Save();
+        }
+
         public bool CreateAchievement(Achievement achievement)
         {
             _context.Add(achievement);
