@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace JuniorRangers_API.Models
 {
-    public class User
+    public class User : IdentityUser
     {
         public int UserId { get; set; }
 

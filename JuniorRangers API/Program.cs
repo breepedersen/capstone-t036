@@ -3,8 +3,11 @@ using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
 using JuniorRangers_API.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Text.Json.Serialization;
 
 namespace JuniorRangers_API
@@ -44,10 +47,33 @@ namespace JuniorRangers_API
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-/*            var conStrBuilder = new SqlConnectionStringBuilder(
-            builder.Configuration.GetConnectionString("DefaultConnection"));
-            conStrBuilder.Password = builder.Configuration["DbPassword"];
-            var connection = conStrBuilder.ConnectionString;*/
+            builder.Services.AddIdentity<User, IdentityRole>(options => {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+            })
+            .AddEntityFrameworkStores<DataContext>();
+
+            //add authentication scheme
+            builder.Services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme =
+                options.DefaultChallengeScheme =
+                options.DefaultForbidScheme =
+                options.DefaultScheme =
+                options.DefaultSignInScheme =
+                options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = builder.Configuration["JWT:Audience"],
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
+                    )
+                };
+            });
 
             var app = builder.Build();
 
@@ -77,6 +103,8 @@ namespace JuniorRangers_API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
