@@ -104,7 +104,11 @@
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
+<<<<<<< Updated upstream
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+=======
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-07-01T11:07:29.036Z",
               "EditorCaption": ""
