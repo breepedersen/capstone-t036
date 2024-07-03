@@ -87,7 +87,7 @@ namespace JuniorRangers_API.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreatePicture([FromBody] PictureDto pictureCreate, [FromQuery] int userId, [FromQuery] int? albumId, [FromQuery] int? postId)
+        public IActionResult CreatePicture([FromBody] PictureDto pictureCreate, [FromQuery] string userId, [FromQuery] int? albumId, [FromQuery] int? postId)
         {
 /*            if (pictureCreate == null)
                 return BadRequest(ModelState);

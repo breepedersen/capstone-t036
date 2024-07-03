@@ -5,10 +5,10 @@ namespace JuniorRangers_API.Models
 {
     public class User : IdentityUser
     {
-        public int UserId { get; set; }
+        //public int CustomUserId { get; set; }
 
-        [StringLength(20)]
-        public String Username { get; set; }
+        // [StringLength(20)]
+        // public String Username { get; set; }
 
         [StringLength(50)]
         public String Password { get; set; }    //TODO: use hashes to encrypt password

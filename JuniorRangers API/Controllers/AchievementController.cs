@@ -86,7 +86,7 @@ namespace JuniorRangers_API.Controllers
         [HttpGet("user/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAchievementsByUser(int userId)
+        public IActionResult GetAchievementsByUser(string userId)
         {
             var achievements = _mapper.Map<List<AchievementDto>>(_achievementRepository.GetAchievementsByUser(userId));
 
@@ -135,7 +135,7 @@ namespace JuniorRangers_API.Controllers
         [HttpPost("userAchievement")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult AwardAchievement([FromQuery] int achievementId, [FromQuery] int userId)
+        public IActionResult AwardAchievement([FromQuery] int achievementId, [FromQuery] string userId)
         {
 
             if (!_achievementRepository.AchievementExists(achievementId))

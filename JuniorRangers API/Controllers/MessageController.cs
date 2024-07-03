@@ -98,7 +98,7 @@ namespace JuniorRangers_API.Controllers
         [HttpPost("Announcement")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateAnnouncement([FromQuery] string title, [FromQuery] string announcementText, [FromQuery] int userId, [FromQuery] int classId)
+        public IActionResult CreateAnnouncement([FromQuery] string title, [FromQuery] string announcementText, [FromQuery] string userId, [FromQuery] int classId)
         {
 
             if (!ModelState.IsValid)
@@ -126,7 +126,7 @@ namespace JuniorRangers_API.Controllers
         [HttpPost("Event")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateEvent([FromQuery] string title, [FromQuery] string eventText, [FromQuery] DateTime date, [FromQuery] int userId, [FromQuery] int classId)
+        public IActionResult CreateEvent([FromQuery] string title, [FromQuery] string eventText, [FromQuery] DateTime date, [FromQuery] string userId, [FromQuery] int classId)
         {
 
             if (!ModelState.IsValid)
@@ -154,7 +154,7 @@ namespace JuniorRangers_API.Controllers
         [HttpPost("Chat")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateChat([FromQuery] string chatText, [FromQuery] int userId, [FromQuery] int classId)
+        public IActionResult CreateChat([FromQuery] string chatText, [FromQuery] string userId, [FromQuery] int classId)
         {
 
             if (!ModelState.IsValid)

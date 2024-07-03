@@ -41,7 +41,7 @@ namespace JuniorRangers_API.Controllers
         [HttpGet("{userId}")]
         [ProducesResponseType(200, Type = typeof(User))]
         [ProducesResponseType(400)]
-        public IActionResult GetUser(int userId) 
+        public IActionResult GetUser(string userId) 
         {
             if (!_userRepository.UserExists(userId))
                 return NotFound();
@@ -66,7 +66,7 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest(ModelState);
 
             var users = _userRepository.GetUsers()
-                .Where(c => c.Username.Trim().ToUpper() == userCreate.Username.Trim().ToUpper())
+                .Where(c => c.UserName.Trim().ToUpper() == userCreate.UserName.Trim().ToUpper())
                 .FirstOrDefault();
 
             if (users != null)
@@ -97,7 +97,7 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateUser(int userId, [FromQuery] string? password, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
+        public IActionResult UpdateUser(string userId, [FromQuery] string? password, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
         {
             if (updatedUser == null)
                 return BadRequest(ModelState);
@@ -162,7 +162,7 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult DeleteUser(int userId)
+        public IActionResult DeleteUser(string userId)
         {
             if (!_userRepository.UserExists(userId))
             {

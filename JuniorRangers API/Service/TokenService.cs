@@ -20,7 +20,7 @@ namespace JuniorRangers_API.Service
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.GivenName, user.Username)
+                new Claim(JwtRegisteredClaimNames.GivenName, user.UserName)
             };
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

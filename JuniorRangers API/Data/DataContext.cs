@@ -20,7 +20,7 @@ namespace JuniorRangers_API.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }
 
         //to setup linking of many-to-many tables (without going directly into database)
@@ -28,17 +28,23 @@ namespace JuniorRangers_API.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //UserAchievements many-to-many
+/*            // Configure UserId as a regular property
+            modelBuilder.Entity<User>()
+                .Property(u => u.CustomUserId)
+                .ValueGeneratedOnAdd();*/
+                
+            // Configure many-to-many relationship for UserAchievements
             modelBuilder.Entity<UserAchievement>()
                 .HasKey(ua => new { ua.UserId, ua.AchievementId });
             modelBuilder.Entity<UserAchievement>()
-                .HasOne(u => u.User)
-                .WithMany(ua => ua.UserAchievement)
-                .HasForeignKey(u => u.UserId);
+                .HasOne(ua => ua.User)
+                .WithMany(u => u.UserAchievement)
+                .HasForeignKey(ua => ua.UserId);
             modelBuilder.Entity<UserAchievement>()
-                .HasOne(u => u.Achievement)
-                .WithMany(ua => ua.UserAchievement)
-                .HasForeignKey(a => a.AchievementId);
+                .HasOne(ua => ua.Achievement)
+                .WithMany(a => a.UserAchievement)
+                .HasForeignKey(ua => ua.AchievementId);
+
 
             List<IdentityRole> roles = new List<IdentityRole>
             {
