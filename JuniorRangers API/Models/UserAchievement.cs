@@ -2,7 +2,7 @@
 {
     public class UserAchievement
     {
-        public string UserId { get; set; }
+        public int UserNumber { get; set; }
         public int AchievementId { get; set;}
         public DateTime DateAwarded { get; set; }
         public User User { get; set; }

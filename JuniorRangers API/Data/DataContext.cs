@@ -28,18 +28,19 @@ namespace JuniorRangers_API.Data
         {
             base.OnModelCreating(modelBuilder);
 
-/*            // Configure UserId as a regular property
+            // Configure UserNumber as a regular property
             modelBuilder.Entity<User>()
-                .Property(u => u.CustomUserId)
-                .ValueGeneratedOnAdd();*/
+                .Property(u => u.UserNumber)
+                .ValueGeneratedOnAdd();
                 
             // Configure many-to-many relationship for UserAchievements
             modelBuilder.Entity<UserAchievement>()
-                .HasKey(ua => new { ua.UserId, ua.AchievementId });
+                .HasKey(ua => new { ua.UserNumber, ua.AchievementId });
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.User)
                 .WithMany(u => u.UserAchievement)
-                .HasForeignKey(ua => ua.UserId);
+                .HasForeignKey(ua => ua.UserNumber)
+                .HasPrincipalKey(u => u.UserNumber);
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.Achievement)
                 .WithMany(a => a.UserAchievement)

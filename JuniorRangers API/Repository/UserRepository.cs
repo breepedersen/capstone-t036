@@ -36,9 +36,9 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
-        public User GetUser(string id)
+        public User GetUser(int userNumber)
         {
-            return _context.Users.Where(u => u.Id == id).FirstOrDefault();
+            return _context.Users.Where(u => u.UserNumber == userNumber).FirstOrDefault();
         }
 
         public User GetUser(string firstname, string lastname)
@@ -64,9 +64,9 @@ namespace JuniorRangers_API.Repository
             return Save();
         }
 
-        public bool UserExists(string id)
+        public bool UserExists(int userNumber)
         {
-            return _context.Users.Any(u => u.Id == id);
+            return _context.Users.Any(u => u.UserNumber == userNumber);
         }
 
         public bool UserExists(string firstname, string lastname)

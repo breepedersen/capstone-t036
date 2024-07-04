@@ -41,12 +41,12 @@ namespace JuniorRangers_API.Controllers
         [HttpGet("{userId}")]
         [ProducesResponseType(200, Type = typeof(User))]
         [ProducesResponseType(400)]
-        public IActionResult GetUser(string userId) 
+        public IActionResult GetUser(int userNumber) 
         {
-            if (!_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userNumber))
                 return NotFound();
 
-            var user = _mapper.Map<UserDto>(_userRepository.GetUser(userId));
+            var user = _mapper.Map<UserDto>(_userRepository.GetUser(userNumber));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -97,15 +97,15 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateUser(string userId, [FromQuery] string? password, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
+        public IActionResult UpdateUser(int userNumber, [FromQuery] string? password, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
         {
             if (updatedUser == null)
                 return BadRequest(ModelState);
 
-            if (userId != updatedUser.UserId)
+            if (userNumber != updatedUser.UserNumber)
                 return BadRequest(ModelState);
 
-            if (!_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userNumber))
                 return NotFound();
 
             if (!ModelState.IsValid)
@@ -114,7 +114,7 @@ namespace JuniorRangers_API.Controllers
             var userMap = _mapper.Map<User>(updatedUser);
 
             //change password
-            string existingPassword = _userRepository.GetUser(userId).Password;
+            string existingPassword = _userRepository.GetUser(userNumber).Password;
             if (password != null)
                 if (password == existingPassword)
                 {
@@ -130,7 +130,7 @@ namespace JuniorRangers_API.Controllers
             //change classroom
             if (classId != null)
             {
-                Classroom currentClass = _userRepository.GetUser(userId).Classroom;
+                Classroom currentClass = _userRepository.GetUser(userNumber).Classroom;
                 Classroom updatedClass = _classroomRepository.GetClassroom((int)classId);
                 if (classId == (currentClass == null? null : currentClass.ClassId))
                 {
@@ -162,14 +162,14 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult DeleteUser(string userId)
+        public IActionResult DeleteUser(int userNumber)
         {
-            if (!_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userNumber))
             {
                 return NotFound();
             }
 
-            var userToDelete = _userRepository.GetUser(userId);
+            var userToDelete = _userRepository.GetUser(userNumber);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

@@ -5,7 +5,7 @@ namespace JuniorRangers_API.Models
 {
     public class User : IdentityUser
     {
-        //public int CustomUserId { get; set; }
+        public int UserNumber { get; set; }
 
         // [StringLength(20)]
         // public String Username { get; set; }

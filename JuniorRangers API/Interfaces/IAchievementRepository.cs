@@ -7,7 +7,7 @@ namespace JuniorRangers_API.Interfaces
         ICollection<Achievement> GetAchievements();
         Achievement GetAchievement(int id);
         ICollection<User> GetUsersByAchievement(int achievementId);
-        ICollection<Achievement> GetAchievementsByUser(string UserId);
+        ICollection<Achievement> GetAchievementsByUser(int userNumber);
         ICollection<Achievement> GetAchievementsByMissionGroup(int missonGroupId);
         bool AchievementExists(int achievementId);
         bool CreateAchievement(Achievement achievement);

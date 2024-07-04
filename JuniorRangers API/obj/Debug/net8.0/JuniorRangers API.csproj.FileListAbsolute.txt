@@ -136,8 +136,6 @@ C:\Users\faera\OneDrive - Queensland University of Technology\IFB398 Capstone Pr
 C:\Users\faera\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\obj\Debug\net8.0\JuniorRangers API.pdb
 C:\Users\faera\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\obj\Debug\net8.0\JuniorRangers API.genruntimeconfig.cache
 C:\Users\faera\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\obj\Debug\net8.0\ref\JuniorRangers API.dll
-C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\appsettings.json
 C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\JuniorRangers API.exe
 C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\JuniorRangers API.deps.json
 C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\JuniorRangers API.runtimeconfig.json
@@ -281,3 +279,4 @@ C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Proj
 C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\appsettings.json

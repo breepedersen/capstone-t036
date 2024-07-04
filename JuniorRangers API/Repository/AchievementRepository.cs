@@ -52,9 +52,9 @@ namespace JuniorRangers_API.Repository
             return _context.Achievements.Where(a => a.MissionGroup == missonGroupId).ToList();
         }
 
-        public ICollection<Achievement> GetAchievementsByUser(string userId)
+        public ICollection<Achievement> GetAchievementsByUser(int userNumber)
         {
-            return _context.UserAchievements.Where(u => u.UserId == userId).Select(a => a.Achievement).ToList();
+            return _context.UserAchievements.Where(u => u.UserNumber == userNumber).Select(a => a.Achievement).ToList();
         }
 
         public ICollection<User> GetUsersByAchievement(int achievementId)
