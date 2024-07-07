@@ -258,13 +258,11 @@ namespace JuniorRangers_API.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -280,11 +278,6 @@ namespace JuniorRangers_API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -293,11 +286,6 @@ namespace JuniorRangers_API.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -377,15 +365,21 @@ namespace JuniorRangers_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3bc03388-f3e1-45e0-a317-e50db62844a5",
+                            Id = "8df481e8-587c-427b-afeb-bc112d498021",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "9e393468-8a3d-46da-8c25-58c77c83dfa5",
-                            Name = "User",
-                            NormalizedName = "USER"
+                            Id = "c9df3432-2205-4cac-b8d0-3d9ca480c70b",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "300bf890-5f96-4000-b743-8404474a0196",
+                            Name = "Ranger",
+                            NormalizedName = "RANGER"
                         });
                 });
 

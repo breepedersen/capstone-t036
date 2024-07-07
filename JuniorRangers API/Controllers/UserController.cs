@@ -57,39 +57,39 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
-        [HttpPost]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        public IActionResult CreateUser([FromQuery] string password,[FromBody] UserDto userCreate)
-        {
-            if (userCreate == null)
-                return BadRequest(ModelState);
+        // [HttpPost]
+        // [ProducesResponseType(204)]
+        // [ProducesResponseType(400)]
+        // public IActionResult CreateUser([FromQuery] string password,[FromBody] UserDto userCreate)
+        // {
+        //     if (userCreate == null)
+        //         return BadRequest(ModelState);
 
-            var users = _userRepository.GetUsers()
-                .Where(c => c.UserName.Trim().ToUpper() == userCreate.UserName.Trim().ToUpper())
-                .FirstOrDefault();
+        //     var users = _userRepository.GetUsers()
+        //         .Where(c => c.UserName.Trim().ToUpper() == userCreate.UserName.Trim().ToUpper())
+        //         .FirstOrDefault();
 
-            if (users != null)
-            {
-                ModelState.AddModelError("", "User already exists");
-                return StatusCode(422, ModelState);
-            }
+        //     if (users != null)
+        //     {
+        //         ModelState.AddModelError("", "User already exists");
+        //         return StatusCode(422, ModelState);
+        //     }
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        //     if (!ModelState.IsValid)
+        //         return BadRequest(ModelState);
 
-            var userMap = _mapper.Map<User>(userCreate);
-            userMap.Password = password;
+        //     var userMap = _mapper.Map<User>(userCreate);
+        //     userMap.Password = password;
 
 
-            if (!_userRepository.CreateUser(userMap))
-            {
-                ModelState.AddModelError("", "Something went wrong while saving");
-                return StatusCode(500, ModelState);
-            }
+        //     if (!_userRepository.CreateUser(userMap))
+        //     {
+        //         ModelState.AddModelError("", "Something went wrong while saving");
+        //         return StatusCode(500, ModelState);
+        //     }
 
-            return Ok("Successfully created");
-        }
+        //     return Ok("Successfully created");
+        // }
 
 
         //PUT METHODS
@@ -97,7 +97,7 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateUser(int userNumber, [FromQuery] string? password, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
+        public IActionResult UpdateUser(int userNumber, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
         {
             if (updatedUser == null)
                 return BadRequest(ModelState);
@@ -113,19 +113,19 @@ namespace JuniorRangers_API.Controllers
 
             var userMap = _mapper.Map<User>(updatedUser);
 
-            //change password
-            string existingPassword = _userRepository.GetUser(userNumber).Password;
-            if (password != null)
-                if (password == existingPassword)
-                {
-                    ModelState.AddModelError("", "Please choose a different password.");
-                    return StatusCode(500, ModelState);
-                }
-                else {
-                    userMap.Password = password;
-                }
-            else
-                userMap.Password = existingPassword; //TODO: make change password seperate function
+            // //change password
+            // string existingPassword = _userRepository.GetUser(userNumber).Password;
+            // if (password != null)
+            //     if (password == existingPassword)
+            //     {
+            //         ModelState.AddModelError("", "Please choose a different password.");
+            //         return StatusCode(500, ModelState);
+            //     }
+            //     else {
+            //         userMap.Password = password;
+            //     }
+            // else
+            //     userMap.Password = existingPassword; //TODO: make change password seperate function
 
             //change classroom
             if (classId != null)

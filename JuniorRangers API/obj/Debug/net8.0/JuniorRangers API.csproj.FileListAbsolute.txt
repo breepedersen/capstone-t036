@@ -280,3 +280,7 @@ C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Proj
 c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\appsettings.json
+c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Newtonsoft.Json.dll
+c:\Users\Tom\OneDrive - Queensland University of Technology\IFB398 Capstone Project\Junior Rangers App\JuniorRangers API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

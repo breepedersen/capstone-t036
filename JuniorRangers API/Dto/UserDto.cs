@@ -8,6 +8,6 @@ namespace JuniorRangers_API.Dto
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String UserName { get; set; }
-        public String Role { get; set; }
+        //public String Role { get; set; }
     }
 }

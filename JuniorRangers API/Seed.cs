@@ -25,8 +25,8 @@ namespace JuniorRangers_API
                             UserName = "TomMan",
                             FirstName = "Tom",
                             LastName = "Pham",
-                            Password = "123",
-                            Role = "Ranger",
+                            //Password = "123",
+                            //Role = "Ranger",
                             Classroom = new Classroom()
                             {
                                 Name = "Team Super",
@@ -39,8 +39,8 @@ namespace JuniorRangers_API
                                         CreationDate = DateTime.Now,
                                         Pictures = new List<Picture>()
                                         {
-                                            new Picture { Description = "Caption 1", UploadDate = new DateTime(2022,02,21), Uploader = new User { UserName = "Username1", FirstName = "Chris", LastName = "Chesher", Password = "123", Role = "Admin" }},
-                                            new Picture { Description = "Caption 2", UploadDate = new DateTime(2022,02,13), Uploader = new User { UserName = "username2", FirstName = "Molly", LastName = "Arnold", Password = "123", Role = "Admin" }}
+                                            new Picture { Description = "Caption 1", UploadDate = new DateTime(2022,02,21), Uploader = new User { UserName = "Username1", FirstName = "Chris", LastName = "Chesher", /*Password = "123". Role = "Admin" */}},
+                                            new Picture { Description = "Caption 2", UploadDate = new DateTime(2022,02,13), Uploader = new User { UserName = "username2", FirstName = "Molly", LastName = "Arnold", /*Password = "123". Role = "Admin"*/ }}
                                         }
                                     }
                                 },
@@ -58,15 +58,15 @@ namespace JuniorRangers_API
                                         PostDate = DateTime.Now,
                                         Pictures = new List<Picture>()
                                         {
-                                            new Picture { Description = "Platypus", UploadDate = new DateTime(2022,02,13), Uploader = new User { UserName = "tobyy", FirstName = "Toby", LastName = "Toby", Password = "123", Role = "Ranger" }}
+                                            new Picture { Description = "Platypus", UploadDate = new DateTime(2022,02,13), Uploader = new User { UserName = "tobyy", FirstName = "Toby", LastName = "Toby", /*Password = "123", Role = "Ranger"*/ }}
                                         }
                                     }
                                 },
                                 Messages = new List<Message>()
                                 {
-                                    new Message { MessageType = "Announcement", MessageTitle = "Weather Today", MessageText = "Today will be a cold day", Date = DateTime.Now, Sender = new User { UserName = "gregyy", FirstName = "Greg", LastName = "Polby", Password = "123", Role = "Ranger" } },
-                                    new Message { MessageType = "Event", MessageTitle = "Mountain Trip", MessageText = "A field trip to the mountains", Date = new DateTime(2024,06,12), Sender = new User { UserName = "TheRanger", FirstName = "Eve", LastName = "Smith", Password = "123", Role = "Ranger" }},
-                                    new Message { MessageType = "Chat", MessageText = "Hi all", Date = DateTime.Now , Sender = new User { UserName = "First", FirstName = "Adam", LastName = "Smith", Password = "123", Role = "Ranger" }}
+                                    new Message { MessageType = "Announcement", MessageTitle = "Weather Today", MessageText = "Today will be a cold day", Date = DateTime.Now, Sender = new User { UserName = "gregyy", FirstName = "Greg", LastName = "Polby", /*Password = "123", Role = "Ranger"*/ } },
+                                    new Message { MessageType = "Event", MessageTitle = "Mountain Trip", MessageText = "A field trip to the mountains", Date = new DateTime(2024,06,12), Sender = new User { UserName = "TheRanger", FirstName = "Eve", LastName = "Smith", /*Password = "123", Role = "Ranger"*/ }},
+                                    new Message { MessageType = "Chat", MessageText = "Hi all", Date = DateTime.Now , Sender = new User { UserName = "First", FirstName = "Adam", LastName = "Smith", /*Password = "123", Role = "Ranger" */}}
                                 }
                             }
                         },
@@ -85,8 +85,8 @@ namespace JuniorRangers_API
                             UserName = "Benname",
                             FirstName = "Ben",
                             LastName = "Eckersley",
-                            Password = "123",
-                            Role = "Student",
+                            //Password = "123",
+                            //Role = "Student",
                             Classroom = new Classroom()
                             {
                                 JoinCode = "class2",
@@ -108,8 +108,8 @@ namespace JuniorRangers_API
                             UserName = "SP",
                             FirstName = "Sonnie",
                             LastName = "Poon",
-                            Password = "123",
-                            Role = "Student",
+                            //Password = "123",
+                            //Role = "Student",
                             Classroom = new Classroom()
                             {
                                 JoinCode = "class3",
@@ -131,8 +131,8 @@ namespace JuniorRangers_API
                             UserName = "Br",
                             FirstName = "Bree",
                             LastName = "Pederson",
-                            Password = "123",
-                            Role = "Student",
+                            //Password = "123",
+                            //Role = "Student",
                             Classroom = new Classroom()
                             {
                                 JoinCode = "class4",

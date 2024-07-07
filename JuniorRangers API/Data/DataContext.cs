@@ -56,8 +56,13 @@ namespace JuniorRangers_API.Data
                 },
                 new IdentityRole
                 {
-                    Name = "User",
-                    NormalizedName = "USER"
+                    Name = "Student",
+                    NormalizedName = "STUDENT"
+                },
+                new IdentityRole
+                {
+                    Name = "Ranger",
+                    NormalizedName = "RANGER"
                 },
             };
             modelBuilder.Entity<IdentityRole>().HasData(roles);
