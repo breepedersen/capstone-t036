@@ -18,13 +18,15 @@ namespace JuniorRangers_API.Service
 
         public string CreateToken(User user)
         {
+            // Configure claims
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.GivenName, user.UserName)
             };
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
-
+            
+            // Configure object representation of token (using claimsIdentity)
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -36,9 +38,10 @@ namespace JuniorRangers_API.Service
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
+            // Create token
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            //Return token as string
+            // Return token as string
             return tokenHandler.WriteToken(token);
         }
     }
