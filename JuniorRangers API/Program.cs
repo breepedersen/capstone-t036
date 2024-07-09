@@ -53,6 +53,7 @@ namespace JuniorRangers_API
             builder.Services.AddIdentity<User, IdentityRole>(options => {
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
             })
             .AddEntityFrameworkStores<DataContext>();
 
@@ -77,6 +78,19 @@ namespace JuniorRangers_API
                     )
                 };
             });
+            
+            // Configure CORS, policies to identify client
+            builder.Services.AddCors(options => 
+            {
+                //Mobile application
+                options.AddPolicy("mobileApp", policyBuilder => 
+                {
+                    policyBuilder.WithOrigins("https://localhost:7082"); //change to frontend host?
+                    policyBuilder.AllowAnyHeader();                      // TODO: use auntentication header?
+                    policyBuilder.AllowAnyMethod();
+                });
+            });
+
 
             var app = builder.Build();
 
@@ -114,6 +128,8 @@ namespace JuniorRangers_API
 
             app.MapControllers();
             //app.MapGet("/", () => connection);
+
+            app.UseCors("mobileApp");
 
             app.Run();
         }

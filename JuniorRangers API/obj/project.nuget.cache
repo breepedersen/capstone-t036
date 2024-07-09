@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "glYIS1tO+0fF3Lr1hT0xVxf5wUDgmDuE0bpw9SGTRAd0kpgmX4zT8r+8oG3I0KSQ1XRok6Am9X4u+EiuV7RrzA==",
+  "dgSpecHash": "Y90RV7VwcZstpK2BluM9wbT8GjKGT/Whmr/5JcV8qZiEhBIso8pQMjBe0iFunnrdardwxpEMXKOaiUaSR6WO/g==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\JuniorRangers API.csproj",
+  "projectFilePath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\JuniorRangers API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tom\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Tom\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
