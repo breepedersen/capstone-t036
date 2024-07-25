@@ -131,7 +131,12 @@ namespace JuniorRangers_API.Controllers
             return Ok("Successfully created");
         }
 
-
+        /// <summary>
+        /// Award an achievement to a user
+        /// </summary>
+        /// <param name="achievementId">The achievement to be awarded</param>
+        /// <param name="userNumber">The user to receive the achievement</param>
+        /// <returns></returns>
         [HttpPost("userAchievement")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

@@ -115,6 +115,10 @@ namespace JuniorRangers_API.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -365,19 +369,19 @@ namespace JuniorRangers_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8df481e8-587c-427b-afeb-bc112d498021",
+                            Id = "1e554b86-d2b8-4552-a3fc-30303bb2b99f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c9df3432-2205-4cac-b8d0-3d9ca480c70b",
+                            Id = "75f70aed-8d78-483d-a36c-84d462947011",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "300bf890-5f96-4000-b743-8404474a0196",
+                            Id = "2657876c-7e93-44cd-9a94-2a4df1a138ea",
                             Name = "Ranger",
                             NormalizedName = "RANGER"
                         });

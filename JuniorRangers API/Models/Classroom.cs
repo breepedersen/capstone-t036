@@ -7,6 +7,7 @@ namespace JuniorRangers_API.Models
         [Key]
         public int ClassId { get; set; }
         public string Name { get; set; }
+        public string Location { get; set; }
 
         [StringLength(10)]
         public String JoinCode { get; set; }

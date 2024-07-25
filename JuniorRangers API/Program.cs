@@ -85,7 +85,8 @@ namespace JuniorRangers_API
                 //Mobile application
                 options.AddPolicy("mobileApp", policyBuilder => 
                 {
-                    policyBuilder.WithOrigins("https://localhost:7082"); //change to frontend host?
+                    policyBuilder.AllowAnyOrigin();
+                    //policyBuilder.WithOrigins("https://localhost:7082"); //change to frontend host?
                     policyBuilder.AllowAnyHeader();                      // TODO: use auntentication header?
                     policyBuilder.AllowAnyMethod();
                 });
@@ -113,11 +114,15 @@ namespace JuniorRangers_API
 
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+            // if (app.Environment.IsDevelopment())
+            // {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Junior Rangers API V1");
+                });
+            //}
 
             app.UseHttpsRedirection();
 

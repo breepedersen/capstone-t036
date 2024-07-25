@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using JuniorRangers_API.Dto;
 using JuniorRangers_API.Interfaces;
-using JuniorRangers_API.Migrations;
 using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
 using Microsoft.AspNetCore.Components;
