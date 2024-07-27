@@ -14,5 +14,8 @@ namespace JuniorRangers_API.Dto.Account
         public string? LastName { get; set; }
         [Required]
         public string? Password { get; set; }
+        [Required]
+        public string? Role { get; set; }
+        public string? RangerCode { get; set; }     //Ranger code only required if registering as ranger
     }
 }

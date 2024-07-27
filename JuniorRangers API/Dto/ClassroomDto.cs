@@ -6,5 +6,6 @@ namespace JuniorRangers_API.Dto
     {
         public int ClassId { get; set; }
         public string Name { get; set; }
+        public string Location { get; set; }
     }
 }

@@ -20,6 +20,8 @@ namespace JuniorRangers_API.Controllers
         private readonly UserManager<User> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<User> _signInManager;
+        private readonly string RangerRegCode = "Ranger123";    //TODO: secure register code for rangers
+
         public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager) 
         {
             _userManager = userManager;
@@ -68,7 +70,26 @@ namespace JuniorRangers_API.Controllers
                 var createdUser = await _userManager.CreateAsync(user, registerDto.Password);
                 if(createdUser.Succeeded)
                 {
-                    var roleResult = await _userManager.AddToRoleAsync(user, "Student");
+                    // Register as student or ranger according to role selected
+                    IdentityResult roleResult;
+                    if (registerDto.Role == "Student")
+                    {
+                        roleResult = await _userManager.AddToRoleAsync(user, "Student");
+                    }
+                    else if (registerDto.Role == "Ranger" && registerDto.RangerCode == RangerRegCode)
+                    {
+                        roleResult = await _userManager.AddToRoleAsync(user, "Ranger");
+                    }
+                    else
+                    {
+                        await _userManager.DeleteAsync(user);
+                        if (registerDto.Role == "Ranger" && registerDto.RangerCode != RangerRegCode)
+                        {
+                            return BadRequest("Invalid ranger code.");
+                        }
+                        return BadRequest("Invalid role specified.");
+                    }
+
                     if (roleResult.Succeeded)
                     {
                         return Ok(
@@ -81,6 +102,7 @@ namespace JuniorRangers_API.Controllers
                     }
                     else
                     {
+                        await _userManager.DeleteAsync(user);
                         return StatusCode(500, roleResult.Errors);
                     }
                 }
