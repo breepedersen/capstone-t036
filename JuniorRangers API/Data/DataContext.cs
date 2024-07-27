@@ -22,6 +22,9 @@ namespace JuniorRangers_API.Data
         public DbSet<Post> Posts { get; set; }
         //public DbSet<User> Users { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }
+        public DbSet<MissionGroup> MissionGroups { get; set; }
+        public DbSet<ClassMission> ClassMissions { get; set; }
+        public DbSet<AchievementMissionGroup> AchievementMissionGroups { get; set; }
 
         //to setup linking of many-to-many tables (without going directly into database)
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,6 +48,30 @@ namespace JuniorRangers_API.Data
                 .HasOne(ua => ua.Achievement)
                 .WithMany(a => a.UserAchievement)
                 .HasForeignKey(ua => ua.AchievementId);
+
+            // Configure many-to-many relationship between Classroom and MissionGroup using ClassMissions
+            modelBuilder.Entity<ClassMission>()
+                .HasKey(cm => new { cm.ClassId, cm.MissionGroupId });
+            modelBuilder.Entity<ClassMission>()
+                .HasOne(cm => cm.Class)
+                .WithMany(c => c.ClassMissions)
+                .HasForeignKey(cm => cm.ClassId);
+            modelBuilder.Entity<ClassMission>()
+                .HasOne(cm => cm.MissionGroup)
+                .WithMany(mg => mg.ClassMissions)
+                .HasForeignKey(cm => cm.MissionGroupId);
+
+            // Configure many-to-many relationship between Achievement and MissionGroup using AchievementMissionGroups
+            modelBuilder.Entity<AchievementMissionGroup>()
+                .HasKey(amg => new { amg.AchievementId, amg.MissionGroupId });
+            modelBuilder.Entity<AchievementMissionGroup>()
+                .HasOne(amg => amg.Achievement)
+                .WithMany(a => a.AchievementMissionGroups)
+                .HasForeignKey(amg => amg.AchievementId);
+            modelBuilder.Entity<AchievementMissionGroup>()
+                .HasOne(amg => amg.MissionGroup)
+                .WithMany(mg => mg.AchievementMissionGroups)
+                .HasForeignKey(amg => amg.MissionGroupId);
 
 
             List<IdentityRole> roles = new List<IdentityRole>

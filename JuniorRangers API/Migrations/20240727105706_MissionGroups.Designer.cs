@@ -4,6 +4,7 @@ using JuniorRangers_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JuniorRangers_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240727105706_MissionGroups")]
+    partial class MissionGroups
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,9 +52,6 @@ namespace JuniorRangers_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsCompletedClassMission")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Points")
                         .HasColumnType("int");
@@ -444,19 +444,19 @@ namespace JuniorRangers_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ec4678e0-af5b-4309-98ad-09b1f38c94e6",
+                            Id = "45f9c41b-af5a-43d2-8fbf-77d533f58bbf",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "44b03480-cb6d-44a6-b7cb-a6bcc845005d",
+                            Id = "7c1d3267-f33d-406f-b065-42524783b0a6",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "26dacc87-13ec-45a6-93ea-9a246a19ac59",
+                            Id = "62139500-16bc-4fc4-8fec-813ec4a8915a",
                             Name = "Ranger",
                             NormalizedName = "RANGER"
                         });

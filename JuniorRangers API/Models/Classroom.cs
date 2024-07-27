@@ -17,5 +17,6 @@ namespace JuniorRangers_API.Models
         public ICollection<Book> Books { get; set; }
         public ICollection<Album> Albums { get; set; }
         public ICollection<Post> Posts { get; set; }
+        public ICollection<ClassMission> ClassMissions { get; set; }
     }
 }

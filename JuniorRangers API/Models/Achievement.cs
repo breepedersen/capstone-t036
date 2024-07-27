@@ -9,7 +9,8 @@ namespace JuniorRangers_API.Models
         [StringLength(50)]
         public String Description { get; set; }
         public int Points { get; set; }
-        public int? MissionGroup { get; set; }
+        public ICollection<MissionGroup> MissionGroups { get; set; }
         public ICollection<UserAchievement> UserAchievement { get; set; }
+        public ICollection<AchievementMissionGroup> AchievementMissionGroups { get; set; }
     }
 }

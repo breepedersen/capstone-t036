@@ -47,9 +47,12 @@ namespace JuniorRangers_API.Repository
             return _context.Achievements.OrderBy(a => a.AchievementId).ToList();
         }
 
-        public ICollection<Achievement> GetAchievementsByMissionGroup(int missonGroupId)
+        public ICollection<Achievement> GetAchievementsByMissionGroup(int missionGroupId)
         {
-            return _context.Achievements.Where(a => a.MissionGroup == missonGroupId).ToList();
+            return _context.AchievementMissionGroups
+               .Where(amg => amg.MissionGroupId == missionGroupId)
+               .Select(amg => amg.Achievement)
+               .ToList();
         }
 
         public ICollection<Achievement> GetAchievementsByUser(int userNumber)
@@ -72,6 +75,32 @@ namespace JuniorRangers_API.Repository
         {
             _context.Update(achievement);
             return Save();
+        }
+
+        //Missions Groups
+        public ICollection<MissionGroup> GetMissionGroups()
+        {
+            return null;
+        }
+        public bool MissionGroupExists(int missonGroupId)
+        {
+            return false;
+        }
+        public bool CreateMissionGroup(MissionGroup missonGroup)
+        {
+            return false;
+        }
+        public bool UpdateMissionGroup(MissionGroup missonGroup)
+        {
+            return false;
+        }
+        public bool AssignMissionGroupToClass(ClassMission classmission)
+        {
+            return false;
+        }
+        public bool DeleteMissionGroup(MissionGroup missonGroup)
+        {
+            return false;
         }
     }
 }

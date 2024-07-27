@@ -26,7 +26,7 @@ namespace JuniorRangers_API
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-            builder.Services.AddTransient<Seed>();
+            //builder.Services.AddTransient<Seed>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IClassroomRepository, ClassroomRepository>();
@@ -126,7 +126,7 @@ namespace JuniorRangers_API
             var app = builder.Build();
 
 
-            //seed data injection
+/*            //seed data injection
             if (args.Length == 1 && args[0].ToLower() == "seeddata")
                 SeedData(app);
 
@@ -139,7 +139,7 @@ namespace JuniorRangers_API
                     var service = scope.ServiceProvider.GetService<Seed>();
                     service.SeedDataContext();
                 }
-            }
+            }*/
 
 
 

@@ -1,5 +1,6 @@
 ﻿namespace JuniorRangers_API.Models
 {
+    //A join table between Users and Achievements
     public class UserAchievement
     {
         public int UserNumber { get; set; }
