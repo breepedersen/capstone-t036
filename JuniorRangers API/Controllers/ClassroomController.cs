@@ -71,7 +71,11 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
-        //Create a classroom
+        /// <summary>
+        /// Create a classroom (only admin is able to)
+        /// </summary>
+        /// <param name="classroomCreate">Input ClassroomDto fields: name, location</param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

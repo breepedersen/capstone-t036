@@ -41,7 +41,7 @@ namespace JuniorRangers_API.Controllers
         }
 
         //Get a specific user by ID
-        [HttpGet("{userId}")]
+        [HttpGet("{userNumber}")]
         [ProducesResponseType(200, Type = typeof(User))]
         [ProducesResponseType(400)]
         public IActionResult GetUser(int userNumber) 
@@ -102,7 +102,7 @@ namespace JuniorRangers_API.Controllers
             return NoContent();
         }
 
-        //Assign user to a classroom
+        //Manually ssign user to a classroom
         [Authorize(Roles = "Admin,Ranger")]
         [HttpPut("updateUserClass")]
         [ProducesResponseType(204)]
@@ -140,7 +140,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //DELETE METHODS
-        [HttpDelete("userId")]
+        [HttpDelete("userNumber")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

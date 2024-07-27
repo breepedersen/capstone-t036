@@ -69,7 +69,11 @@ namespace JuniorRangers_API.Controllers
             return Ok(missions);
         }
 
-        //Get list of users that have been awarded a specific achievement
+        /// <summary>
+        /// Get list of users that have been awarded a specific achievement
+        /// </summary>
+        /// <param name="achievementId">The achievementID of the achievement to which the returned list of users have all been awarded</param>
+        /// <returns></returns>
         [HttpGet("{achievementId}/users")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         [ProducesResponseType(400)]
@@ -87,7 +91,7 @@ namespace JuniorRangers_API.Controllers
         }
 
         //Get list of achievements that have been awarded to a specific user
-        [HttpGet("user/{userId}")]
+        [HttpGet("user/{userNumber}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
         [ProducesResponseType(400)]
         public IActionResult GetAchievementsByUser(int userNumber)

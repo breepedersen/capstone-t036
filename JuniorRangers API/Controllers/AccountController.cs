@@ -37,7 +37,7 @@ namespace JuniorRangers_API.Controllers
             
             // Find user using UserManager
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
-            if(user == null) return Unauthorized("Invalid username");
+            if(user == null) return Unauthorized("Username not found and/or password incorrect");
 
             // Check password using SignInManager
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
@@ -47,6 +47,7 @@ namespace JuniorRangers_API.Controllers
             return Ok(
                 new NewUserDto
                 {
+                    UserNumber = user.UserNumber,
                     UserName = user.UserName,
                     Token = await _tokenService.CreateToken(user)
                 }
