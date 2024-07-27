@@ -25,6 +25,8 @@ namespace JuniorRangers_API.Controllers
             _mapper = mapper;
         }
 
+        //GET METHODS
+        //Get list of all users
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
@@ -37,6 +39,7 @@ namespace JuniorRangers_API.Controllers
             return Ok(user);
         }
 
+        //Get a specific user by ID
         [HttpGet("{userId}")]
         [ProducesResponseType(200, Type = typeof(User))]
         [ProducesResponseType(400)]
@@ -56,47 +59,16 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
-        // [HttpPost]
-        // [ProducesResponseType(204)]
-        // [ProducesResponseType(400)]
-        // public IActionResult CreateUser([FromQuery] string password,[FromBody] UserDto userCreate)
-        // {
-        //     if (userCreate == null)
-        //         return BadRequest(ModelState);
 
-        //     var users = _userRepository.GetUsers()
-        //         .Where(c => c.UserName.Trim().ToUpper() == userCreate.UserName.Trim().ToUpper())
-        //         .FirstOrDefault();
-
-        //     if (users != null)
-        //     {
-        //         ModelState.AddModelError("", "User already exists");
-        //         return StatusCode(422, ModelState);
-        //     }
-
-        //     if (!ModelState.IsValid)
-        //         return BadRequest(ModelState);
-
-        //     var userMap = _mapper.Map<User>(userCreate);
-        //     userMap.Password = password;
-
-
-        //     if (!_userRepository.CreateUser(userMap))
-        //     {
-        //         ModelState.AddModelError("", "Something went wrong while saving");
-        //         return StatusCode(500, ModelState);
-        //     }
-
-        //     return Ok("Successfully created");
-        // }
 
 
         //PUT METHODS
-        [HttpPut("userId")]
+        //Update a user's UserDto fields (username, name, lastname)
+        [HttpPut("updateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateUser(int userNumber, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
+        public IActionResult UpdateUser(int userNumber, [FromBody] UserDto updatedUser)
         {
             if (updatedUser == null)
                 return BadRequest(ModelState);
@@ -110,44 +82,61 @@ namespace JuniorRangers_API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var userMap = _mapper.Map<User>(updatedUser);
+            /*            var userMap = _mapper.Map<User>(updatedUser);
 
-            // //change password
-            // string existingPassword = _userRepository.GetUser(userNumber).Password;
-            // if (password != null)
-            //     if (password == existingPassword)
-            //     {
-            //         ModelState.AddModelError("", "Please choose a different password.");
-            //         return StatusCode(500, ModelState);
-            //     }
-            //     else {
-            //         userMap.Password = password;
-            //     }
-            // else
-            //     userMap.Password = existingPassword; //TODO: make change password seperate function
+                        if (!_userRepository.UpdateUser(userMap))
+                        {
+                            ModelState.AddModelError("", "Something went wrong updating user");
+                            return StatusCode(500, ModelState);
+                        }*/
 
-            //change classroom
-            if (classId != null)
-            {
-                Classroom currentClass = _userRepository.GetUser(userNumber).Classroom;
-                Classroom updatedClass = _classroomRepository.GetClassroom((int)classId);
-                if (classId == (currentClass == null? null : currentClass.ClassId))
-                {
-                    ModelState.AddModelError("", "Please choose a different classroom.");
-                    return StatusCode(500, ModelState);
-                }
-                else
-                {
-                    userMap.Classroom = updatedClass;
-                }
-            } else
-            {
-                userMap.Classroom = null;
-            }
+            // Get the user
+            var existingUser = _userRepository.GetUser(userNumber);
+            if (existingUser == null)
+                return NotFound();
 
-            if (!_userRepository.UpdateUser(userMap))
+            // Update the necessary fields
+            existingUser.FirstName = updatedUser.FirstName;
+            existingUser.LastName = updatedUser.LastName;
+            existingUser.UserName = updatedUser.UserName;
+
+            if (!_userRepository.UpdateUser(existingUser))
             {
                 ModelState.AddModelError("", "Something went wrong updating user");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        //Assign user to a classroom
+        [HttpPut("updateUserClass")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateUserClass(int userNumber, [FromQuery] int classId)
+        {
+            if (!_userRepository.UserExists(userNumber))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = _userRepository.GetUser(userNumber);
+            var currentClass = user.Classroom;
+            var updatedClass = _classroomRepository.GetClassroom(classId);
+
+            if (classId == (currentClass == null ? 0 : currentClass.ClassId))
+            {
+                ModelState.AddModelError("", "Please choose a different classroom.");
+                return StatusCode(500, ModelState);
+            }
+
+            user.Classroom = updatedClass;
+
+            if (!_userRepository.UpdateUser(user))
+            {
+                ModelState.AddModelError("", "Something went wrong updating user classroom");
                 return StatusCode(500, ModelState);
             }
 

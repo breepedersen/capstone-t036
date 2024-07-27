@@ -37,7 +37,7 @@ namespace JuniorRangers_API.Controllers
 
         }
 
-
+        //Get a specific achievement by ID
         [HttpGet("{achievementId}")]
         [ProducesResponseType(200, Type = typeof(Achievement))]
         [ProducesResponseType(400)]
@@ -54,6 +54,7 @@ namespace JuniorRangers_API.Controllers
             return Ok(achievement);
         }
 
+        //Get list of achievements by missiongroupID
         [HttpGet("mission/{missionGroup}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
         [ProducesResponseType(400)]
@@ -67,6 +68,7 @@ namespace JuniorRangers_API.Controllers
             return Ok(missions);
         }
 
+        //Get list of users that have been awarded a specific achievement
         [HttpGet("{achievementId}/users")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         [ProducesResponseType(400)]
@@ -83,6 +85,7 @@ namespace JuniorRangers_API.Controllers
             return Ok(users);
         }
 
+        //Get list of achievements that have been awarded to a specific user
         [HttpGet("user/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
         [ProducesResponseType(400)]
@@ -98,6 +101,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
+        //Create an achievement
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -171,6 +175,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //PUT METHODS
+        //Update an achievement
         [HttpPut("achievementId")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -202,6 +207,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //DELETE METHODS
+        //Delete an achievement
         [HttpDelete("achievementId")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

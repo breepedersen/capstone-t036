@@ -9,7 +9,7 @@ namespace JuniorRangers_API.Models
         public string Name { get; set; }
         public string Location { get; set; }
 
-        [StringLength(10)]
+        [StringLength(7)]
         public String JoinCode { get; set; }
 
         public ICollection<User> Users { get; set; }

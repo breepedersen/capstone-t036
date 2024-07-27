@@ -9,5 +9,7 @@ namespace JuniorRangers_API.Dto
         public String LastName { get; set; }
         public String UserName { get; set; }
         //public String Role { get; set; }
+
+        //public int ClassroomClassId { get; set; }
     }
 }

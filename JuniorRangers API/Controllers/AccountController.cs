@@ -76,7 +76,7 @@ namespace JuniorRangers_API.Controllers
                     {
                         roleResult = await _userManager.AddToRoleAsync(user, "Student");
                     }
-                    else if (registerDto.Role == "Ranger" && registerDto.RangerCode == RangerRegCode)
+                    else if (registerDto.Role == "Ranger" && registerDto.RangerCode == RangerRegCode)   //reqiore valid ranger code to register as ranger
                     {
                         roleResult = await _userManager.AddToRoleAsync(user, "Ranger");
                     }
