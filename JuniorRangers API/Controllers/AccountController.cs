@@ -48,7 +48,7 @@ namespace JuniorRangers_API.Controllers
                 new NewUserDto
                 {
                     UserName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
+                    Token = await _tokenService.CreateToken(user)
                 }
             );
         }
@@ -96,7 +96,7 @@ namespace JuniorRangers_API.Controllers
                             new NewUserDto
                             {
                                 UserName = user.UserName,
-                                Token = _tokenService.CreateToken(user)
+                                Token = await _tokenService.CreateToken(user)
                             }
                         );
                     }

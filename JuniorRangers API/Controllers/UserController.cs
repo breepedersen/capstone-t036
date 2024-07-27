@@ -3,6 +3,7 @@ using JuniorRangers_API.Dto;
 using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.X509Certificates;
@@ -82,14 +83,6 @@ namespace JuniorRangers_API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            /*            var userMap = _mapper.Map<User>(updatedUser);
-
-                        if (!_userRepository.UpdateUser(userMap))
-                        {
-                            ModelState.AddModelError("", "Something went wrong updating user");
-                            return StatusCode(500, ModelState);
-                        }*/
-
             // Get the user
             var existingUser = _userRepository.GetUser(userNumber);
             if (existingUser == null)
@@ -110,6 +103,7 @@ namespace JuniorRangers_API.Controllers
         }
 
         //Assign user to a classroom
+        [Authorize(Roles = "Admin,Ranger")]
         [HttpPut("updateUserClass")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
