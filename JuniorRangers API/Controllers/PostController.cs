@@ -76,7 +76,7 @@ namespace JuniorRangers_API.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreatePost([FromBody] PostDto postCreate, [FromQuery] int userId, [FromQuery] int classId)
+        public IActionResult CreatePost([FromBody] PostDto postCreate, [FromQuery] int userNumber, [FromQuery] int classId)
         {
             /*            if (pictureCreate == null)
                             return BadRequest(ModelState);
@@ -97,7 +97,7 @@ namespace JuniorRangers_API.Controllers
             var postMap = _mapper.Map<Post>(postCreate);
             postMap.PostDate = DateTime.Now;
             postMap.Likes = 0;
-            postMap.Poster = _userRepository.GetUser(userId);
+            postMap.Poster = _userRepository.GetUser(userNumber);
             postMap.Classroom = _classroomRepository.GetClassroom(classId);
 
             if (!_postRepository.CreatePost(postMap))

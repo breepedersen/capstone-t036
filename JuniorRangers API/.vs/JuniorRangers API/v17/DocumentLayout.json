@@ -1,18 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\faera\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\",
+  "WorkspaceRootPath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\faera\\onedrive - queensland university of technology\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\repository\\classroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:repository\\classroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\controllers\\classroomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:controllers\\classroomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\faera\\onedrive - queensland university of technology\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\faera\\onedrive - queensland university of technology\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\repository\\achievementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:repository\\achievementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,56 +25,72 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 38,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 173,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\faera\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\faera\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-17T01:44:26.075Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\faera\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\faera\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAQwFEAAAAAAAAA",
+              "Title": "ClassroomRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\ClassroomRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\ClassroomRepository.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\ClassroomRepository.cs",
+              "RelativeToolTip": "Repository\\ClassroomRepository.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T04:35:35.954Z",
+              "WhenOpened": "2024-07-28T05:25:39.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAgwJ8AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T05:17:28.008Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AchievementRepository.cs",
-              "DocumentMoniker": "C:\\Users\\faera\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\AchievementRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\AchievementRepository.cs",
-              "ToolTip": "C:\\Users\\faera\\OneDrive - Queensland University of Technology\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\AchievementRepository.cs",
-              "RelativeToolTip": "Repository\\AchievementRepository.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAcwC4AAAAMAAAA",
+              "Title": "ClassroomController.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\ClassroomController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClassroomController.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\ClassroomController.cs",
+              "RelativeToolTip": "Controllers\\ClassroomController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHkAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T05:20:42.178Z",
+              "WhenOpened": "2024-07-27T04:39:36.005Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-13T02:04:44.735Z"
             }
           ]
         },
         {
-          "DockedWidth": 38,
+          "DockedWidth": 65,
           "SelectedChildIndex": -1,
           "Children": [
             {

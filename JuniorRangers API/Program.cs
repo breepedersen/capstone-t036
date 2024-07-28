@@ -1,8 +1,14 @@
 using JuniorRangers_API.Data;
 using JuniorRangers_API.Interfaces;
+using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
+using JuniorRangers_API.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 
 namespace JuniorRangers_API
@@ -16,8 +22,11 @@ namespace JuniorRangers_API
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-            builder.Services.AddTransient<Seed>();
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+            //builder.Services.AddTransient<Seed>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IClassroomRepository, ClassroomRepository>();
@@ -27,9 +36,40 @@ namespace JuniorRangers_API
             builder.Services.AddScoped<IPictureRepository, PictureRepository>();
             builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
             builder.Services.AddScoped<IPostRepository, PostRepository>();
+            builder.Services.AddScoped<IMissionGroupRepository, MissionGroupRepository>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+            //Swagger with authentication check
+            builder.Services.AddSwaggerGen(option =>
+            {
+                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+                option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter a valid token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                option.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type=ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            }
+                        },
+                        new string[]{}
+                    }
+                });
+            });
+
             builder.Services.AddDbContext<DataContext>(options =>
             {
 /*                var conStrBuilder = new SqlConnectionStringBuilder(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -41,15 +81,53 @@ namespace JuniorRangers_API
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-/*            var conStrBuilder = new SqlConnectionStringBuilder(
-            builder.Configuration.GetConnectionString("DefaultConnection"));
-            conStrBuilder.Password = builder.Configuration["DbPassword"];
-            var connection = conStrBuilder.ConnectionString;*/
+            builder.Services.AddIdentity<User, IdentityRole>(options => {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<DataContext>();
+
+            //add authentication scheme
+            builder.Services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme =
+                options.DefaultChallengeScheme =
+                options.DefaultForbidScheme =
+                options.DefaultScheme =
+                options.DefaultSignInScheme =
+                options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = builder.Configuration["JWT:Audience"],
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
+                    )
+                };
+            });
+            
+            // Configure CORS, policies to identify client
+            builder.Services.AddCors(options => 
+            {
+                //Mobile application
+                options.AddPolicy("mobileApp", policyBuilder => 
+                {
+                    policyBuilder.AllowAnyOrigin();
+                    //policyBuilder.WithOrigins("https://localhost:7082"); //change to frontend host?
+                    policyBuilder.AllowAnyHeader();                      // TODO: use auntentication header?
+                    policyBuilder.AllowAnyMethod();
+                });
+            });
+
 
             var app = builder.Build();
 
 
-            //seed data injection
+/*            //seed data injection
             if (args.Length == 1 && args[0].ToLower() == "seeddata")
                 SeedData(app);
 
@@ -62,24 +140,32 @@ namespace JuniorRangers_API
                     var service = scope.ServiceProvider.GetService<Seed>();
                     service.SeedDataContext();
                 }
-            }
+            }*/
 
 
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+            // if (app.Environment.IsDevelopment())
+            // {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Junior Rangers API V1");
+                });
+            //}
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
 
             app.MapControllers();
             //app.MapGet("/", () => connection);
+
+            app.UseCors("mobileApp");
 
             app.Run();
         }

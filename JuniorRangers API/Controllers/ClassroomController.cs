@@ -20,6 +20,8 @@ namespace JuniorRangers_API.Controllers
             _mapper = mapper;
         }
 
+        //GET METHODS
+        //Get list of all classrooms
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Classroom>))]
         public IActionResult GetClassrooms()
@@ -33,6 +35,7 @@ namespace JuniorRangers_API.Controllers
 
         }
 
+        //Get a classroom by ID
         [HttpGet("{classId}")]
         [ProducesResponseType(200, Type = typeof(Classroom))]
         [ProducesResponseType(400)]
@@ -49,6 +52,7 @@ namespace JuniorRangers_API.Controllers
             return Ok(user);
         }
 
+        //Get list of users of a classroom
         [HttpGet("user/{classId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         [ProducesResponseType(400)]
@@ -67,10 +71,15 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
+        /// <summary>
+        /// Create a classroom (only admin is able to)
+        /// </summary>
+        /// <param name="classroomCreate">Input ClassroomDto fields: name, location</param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateClassroom([FromQuery] string joinCode, [FromBody] ClassroomDto classroomCreate)
+        public IActionResult CreateClassroom([FromBody] ClassroomDto classroomCreate)
         {
             if (classroomCreate == null)
                 return BadRequest(ModelState);
@@ -89,7 +98,7 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest(ModelState);
 
             var classroomMap = _mapper.Map<Classroom>(classroomCreate);
-            classroomMap.JoinCode = joinCode;
+            classroomMap.JoinCode = GenerateJoinCode(); //Generates random 7-digit join code
 
 
             if (!_classroomRepository.CreateClassroom(classroomMap))
@@ -101,8 +110,16 @@ namespace JuniorRangers_API.Controllers
             return Ok("Successfully created");
         }
 
+        private string GenerateJoinCode()
+        {
+            var random = new Random();
+            var joinCode = new string(Enumerable.Repeat("0123456789", 7)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+            return joinCode;
+        }
 
         //PUT METHODS
+        //Update a classroom's name or location
         [HttpPut("classId")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -135,6 +152,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //DELETE METHODS
+        //Delete a classroom
         [HttpDelete("classId")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

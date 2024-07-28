@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JuniorRangers_API.Models.JoinTables;
+using System.ComponentModel.DataAnnotations;
 
 namespace JuniorRangers_API.Models
 {
@@ -9,7 +10,9 @@ namespace JuniorRangers_API.Models
         [StringLength(50)]
         public String Description { get; set; }
         public int Points { get; set; }
-        public int? MissionGroup { get; set; }
+        public ICollection<MissionGroup> MissionGroups { get; set; }
         public ICollection<UserAchievement> UserAchievement { get; set; }
+        public ICollection<AchievementMissionGroup> AchievementMissionGroups { get; set; }
+        public ICollection<ClassMissionStatus> ClassMissionStatuses { get; set; }
     }
 }

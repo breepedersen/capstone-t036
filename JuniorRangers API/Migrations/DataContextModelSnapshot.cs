@@ -17,10 +17,25 @@ namespace JuniorRangers_API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AchievementMissionGroup", b =>
+                {
+                    b.Property<int>("AchievementsAchievementId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MissionGroupsMissionGroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AchievementsAchievementId", "MissionGroupsMissionGroupId");
+
+                    b.HasIndex("MissionGroupsMissionGroupId");
+
+                    b.ToTable("AchievementMissionGroup");
+                });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Achievement", b =>
                 {
@@ -34,9 +49,6 @@ namespace JuniorRangers_API.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("MissionGroup")
-                        .HasColumnType("int");
 
                     b.Property<int>("Points")
                         .HasColumnType("int");
@@ -112,8 +124,12 @@ namespace JuniorRangers_API.Migrations
 
                     b.Property<string>("JoinCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -122,6 +138,113 @@ namespace JuniorRangers_API.Migrations
                     b.HasKey("ClassId");
 
                     b.ToTable("Classrooms");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.AchievementMissionGroup", b =>
+                {
+                    b.Property<int>("AchievementId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MissionGroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AchievementId", "MissionGroupId");
+
+                    b.HasIndex("MissionGroupId");
+
+                    b.ToTable("AchievementMissionGroups");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.ClassMission", b =>
+                {
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MissionGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateAssigned")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCompleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ClassId", "MissionGroupId");
+
+                    b.HasIndex("MissionGroupId");
+
+                    b.ToTable("ClassMissions");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.ClassMissionStatus", b =>
+                {
+                    b.Property<int>("ClassroomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MissionGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AchievementId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateAssigned")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCompleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAchievementComplete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ClassroomId", "MissionGroupId", "AchievementId");
+
+                    b.HasIndex("AchievementId");
+
+                    b.HasIndex("MissionGroupId");
+
+                    b.ToTable("ClassMissionStatuses");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.MissionGroup", b =>
+                {
+                    b.Property<int>("MissionGroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MissionGroupId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MissionGroupId");
+
+                    b.ToTable("MissionGroups");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.UserAchievement", b =>
+                {
+                    b.Property<int>("UserNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AchievementId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAwarded")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UserNumber", "AchievementId");
+
+                    b.HasIndex("AchievementId");
+
+                    b.ToTable("UserAchievements");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Message", b =>
@@ -152,14 +275,14 @@ namespace JuniorRangers_API.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("SenderUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("SenderId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("MessageID");
 
                     b.HasIndex("ClassroomClassId");
 
-                    b.HasIndex("SenderUserId");
+                    b.HasIndex("SenderId");
 
                     b.ToTable("Messages");
                 });
@@ -186,8 +309,8 @@ namespace JuniorRangers_API.Migrations
                     b.Property<DateTime>("UploadDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UploaderUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UploaderId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("PictureId");
 
@@ -195,7 +318,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.HasIndex("UploaderUserId");
+                    b.HasIndex("UploaderId");
 
                     b.ToTable("Pictures");
                 });
@@ -217,8 +340,8 @@ namespace JuniorRangers_API.Migrations
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PosterUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("PosterId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -229,70 +352,261 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasIndex("ClassroomClassId");
 
-                    b.HasIndex("PosterUserId");
+                    b.HasIndex("PosterId");
 
                     b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.User", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ClassroomClassId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                    b.HasKey("UserId");
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("UserNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserNumber"));
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ClassroomClassId");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("JuniorRangers_API.Models.UserAchievement", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "251064fb-d8ca-4a0e-b52e-c72b7cb7e9a8",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "0f4fa9d4-0866-4f90-a6a3-4bdb4638f10f",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "9aa53610-498b-4259-a640-01f7036270cb",
+                            Name = "Ranger",
+                            NormalizedName = "RANGER"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AchievementId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateAwarded")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.HasKey("UserId", "AchievementId");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("AchievementId");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("UserAchievements");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("AchievementMissionGroup", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Achievement", null)
+                        .WithMany()
+                        .HasForeignKey("AchievementsAchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.JoinTables.MissionGroup", null)
+                        .WithMany()
+                        .HasForeignKey("MissionGroupsMissionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Album", b =>
@@ -317,6 +631,91 @@ namespace JuniorRangers_API.Migrations
                     b.Navigation("Classroom");
                 });
 
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.AchievementMissionGroup", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Achievement", "Achievement")
+                        .WithMany("AchievementMissionGroups")
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.JoinTables.MissionGroup", "MissionGroup")
+                        .WithMany("AchievementMissionGroups")
+                        .HasForeignKey("MissionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achievement");
+
+                    b.Navigation("MissionGroup");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.ClassMission", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Classroom", "Class")
+                        .WithMany("ClassMissions")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.JoinTables.MissionGroup", "MissionGroup")
+                        .WithMany("ClassMissions")
+                        .HasForeignKey("MissionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("MissionGroup");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.ClassMissionStatus", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Achievement", "Achievement")
+                        .WithMany("ClassMissionStatuses")
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.Classroom", "Classroom")
+                        .WithMany("ClassMissionStatuses")
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.JoinTables.MissionGroup", "MissionGroup")
+                        .WithMany("ClassMissionStatuses")
+                        .HasForeignKey("MissionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achievement");
+
+                    b.Navigation("Classroom");
+
+                    b.Navigation("MissionGroup");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.UserAchievement", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.Achievement", "Achievement")
+                        .WithMany("UserAchievement")
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.User", "User")
+                        .WithMany("UserAchievement")
+                        .HasForeignKey("UserNumber")
+                        .HasPrincipalKey("UserNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achievement");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("JuniorRangers_API.Models.Message", b =>
                 {
                     b.HasOne("JuniorRangers_API.Models.Classroom", "Classroom")
@@ -327,7 +726,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasOne("JuniorRangers_API.Models.User", "Sender")
                         .WithMany("Messages")
-                        .HasForeignKey("SenderUserId");
+                        .HasForeignKey("SenderId");
 
                     b.Navigation("Classroom");
 
@@ -346,9 +745,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasOne("JuniorRangers_API.Models.User", "Uploader")
                         .WithMany("Picures")
-                        .HasForeignKey("UploaderUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UploaderId");
 
                     b.Navigation("Album");
 
@@ -367,7 +764,7 @@ namespace JuniorRangers_API.Migrations
 
                     b.HasOne("JuniorRangers_API.Models.User", "Poster")
                         .WithMany("Posts")
-                        .HasForeignKey("PosterUserId");
+                        .HasForeignKey("PosterId");
 
                     b.Navigation("Classroom");
 
@@ -383,27 +780,63 @@ namespace JuniorRangers_API.Migrations
                     b.Navigation("Classroom");
                 });
 
-            modelBuilder.Entity("JuniorRangers_API.Models.UserAchievement", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("JuniorRangers_API.Models.Achievement", "Achievement")
-                        .WithMany("UserAchievement")
-                        .HasForeignKey("AchievementId")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.HasOne("JuniorRangers_API.Models.User", "User")
-                        .WithMany("UserAchievement")
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.User", null)
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("Achievement");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JuniorRangers_API.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("JuniorRangers_API.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Achievement", b =>
                 {
+                    b.Navigation("AchievementMissionGroups");
+
+                    b.Navigation("ClassMissionStatuses");
+
                     b.Navigation("UserAchievement");
                 });
 
@@ -418,11 +851,24 @@ namespace JuniorRangers_API.Migrations
 
                     b.Navigation("Books");
 
+                    b.Navigation("ClassMissionStatuses");
+
+                    b.Navigation("ClassMissions");
+
                     b.Navigation("Messages");
 
                     b.Navigation("Posts");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("JuniorRangers_API.Models.JoinTables.MissionGroup", b =>
+                {
+                    b.Navigation("AchievementMissionGroups");
+
+                    b.Navigation("ClassMissionStatuses");
+
+                    b.Navigation("ClassMissions");
                 });
 
             modelBuilder.Entity("JuniorRangers_API.Models.Post", b =>

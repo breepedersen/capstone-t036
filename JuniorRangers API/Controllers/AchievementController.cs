@@ -2,7 +2,9 @@
 using JuniorRangers_API.Dto;
 using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
+using JuniorRangers_API.Models.JoinTables;
 using JuniorRangers_API.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JuniorRangers_API.Controllers
@@ -23,6 +25,7 @@ namespace JuniorRangers_API.Controllers
         }
 
 
+        //GET METHODS
         //Get all achievements
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
@@ -34,10 +37,9 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest(ModelState);
 
             return Ok(achievements);
-
         }
 
-
+        //Get a specific achievement by ID
         [HttpGet("{achievementId}")]
         [ProducesResponseType(200, Type = typeof(Achievement))]
         [ProducesResponseType(400)]
@@ -54,19 +56,13 @@ namespace JuniorRangers_API.Controllers
             return Ok(achievement);
         }
 
-        [HttpGet("mission/{missionGroup}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
-        [ProducesResponseType(400)]
-        public IActionResult GetAchievementsByMissionGroup(int missionGroup)
-        {
-            var missions = _mapper.Map<List<AchievementDto>>(_achievementRepository.GetAchievementsByMissionGroup(missionGroup));
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
 
-            return Ok(missions);
-        }
-
+        /// <summary>
+        /// Get list of users that have been awarded a specific achievement
+        /// </summary>
+        /// <param name="achievementId">The achievementID of the achievement to which the returned list of users have all been awarded</param>
+        /// <returns></returns>
         [HttpGet("{achievementId}/users")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         [ProducesResponseType(400)]
@@ -83,12 +79,13 @@ namespace JuniorRangers_API.Controllers
             return Ok(users);
         }
 
-        [HttpGet("user/{userId}")]
+        //Get list of achievements that have been awarded to a specific user
+        [HttpGet("user/{userNumber}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
         [ProducesResponseType(400)]
-        public IActionResult GetAchievementsByUser(int userId)
+        public IActionResult GetAchievementsByUser(int userNumber)
         {
-            var achievements = _mapper.Map<List<AchievementDto>>(_achievementRepository.GetAchievementsByUser(userId));
+            var achievements = _mapper.Map<List<AchievementDto>>(_achievementRepository.GetAchievementsByUser(userNumber));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -98,6 +95,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
+        //Create an achievement
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -131,23 +129,28 @@ namespace JuniorRangers_API.Controllers
             return Ok("Successfully created");
         }
 
-
+        /// <summary>
+        /// Award an achievement to a user
+        /// </summary>
+        /// <param name="achievementId">The achievement to be awarded</param>
+        /// <param name="userNumber">The user to receive the achievement</param>
+        /// <returns></returns>
         [HttpPost("userAchievement")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult AwardAchievement([FromQuery] int achievementId, [FromQuery] int userId)
+        public IActionResult AwardAchievement([FromQuery] int achievementId, [FromQuery] int userNumber)
         {
 
             if (!_achievementRepository.AchievementExists(achievementId))
                 return NotFound();
-            if (!_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userNumber))
                 return NotFound();
 
             var userAchievement = new UserAchievement();
 
-            userAchievement.User = _userRepository.GetUser(userId);
+            userAchievement.User = _userRepository.GetUser(userNumber);
             userAchievement.Achievement = _achievementRepository.GetAchievement(achievementId);
-            userAchievement.UserId = userId;
+            userAchievement.UserNumber = userNumber;
             userAchievement.AchievementId = achievementId;
             userAchievement.DateAwarded = DateTime.Now;
 
@@ -166,6 +169,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //PUT METHODS
+        //Update an achievement
         [HttpPut("achievementId")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -197,6 +201,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //DELETE METHODS
+        //Delete an achievement
         [HttpDelete("achievementId")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

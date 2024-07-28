@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JuniorRangers API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bc483fc438996c3933fdb277da4d5b8ee29b748")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1eeb00f08bd7d648017b429885682e1de89d8c5c")]
 [assembly: System.Reflection.AssemblyProductAttribute("JuniorRangers API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JuniorRangers API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

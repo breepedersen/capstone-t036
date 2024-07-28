@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/JuniorRangersAPI/providers/Microsoft.ServiceLinker/linkers/ConnectionStrings2DefaultConnection_B4C5EE7783",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/jrapp-t36/databases/JRDB",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings2:DefaultConnection",
+      "dynamicId": null
+    }
+  }
+}

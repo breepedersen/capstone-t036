@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using JuniorRangers_API.Dto;
 using JuniorRangers_API.Interfaces;
-using JuniorRangers_API.Migrations;
 using JuniorRangers_API.Models;
 using JuniorRangers_API.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography.X509Certificates;
@@ -26,6 +26,8 @@ namespace JuniorRangers_API.Controllers
             _mapper = mapper;
         }
 
+        //GET METHODS
+        //Get list of all users
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
@@ -38,15 +40,16 @@ namespace JuniorRangers_API.Controllers
             return Ok(user);
         }
 
-        [HttpGet("{userId}")]
+        //Get a specific user by ID
+        [HttpGet("{userNumber}")]
         [ProducesResponseType(200, Type = typeof(User))]
         [ProducesResponseType(400)]
-        public IActionResult GetUser(int userId) 
+        public IActionResult GetUser(int userNumber) 
         {
-            if (!_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userNumber))
                 return NotFound();
 
-            var user = _mapper.Map<UserDto>(_userRepository.GetUser(userId));
+            var user = _mapper.Map<UserDto>(_userRepository.GetUser(userNumber));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -57,96 +60,40 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
-        [HttpPost]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        public IActionResult CreateUser([FromQuery] string password,[FromBody] UserDto userCreate)
-        {
-            if (userCreate == null)
-                return BadRequest(ModelState);
-
-            var users = _userRepository.GetUsers()
-                .Where(c => c.Username.Trim().ToUpper() == userCreate.Username.Trim().ToUpper())
-                .FirstOrDefault();
-
-            if (users != null)
-            {
-                ModelState.AddModelError("", "User already exists");
-                return StatusCode(422, ModelState);
-            }
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var userMap = _mapper.Map<User>(userCreate);
-            userMap.Password = password;
-
-
-            if (!_userRepository.CreateUser(userMap))
-            {
-                ModelState.AddModelError("", "Something went wrong while saving");
-                return StatusCode(500, ModelState);
-            }
-
-            return Ok("Successfully created");
-        }
+        //performed in account controller
 
 
         //PUT METHODS
-        [HttpPut("userId")]
+        //Update a user's UserDto fields (username, name, lastname)
+        [HttpPut("updateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateUser(int userId, [FromQuery] string? password, [FromQuery] int? classId, [FromBody] UserDto updatedUser)
+        public IActionResult UpdateUser(int userNumber, [FromBody] UserDto updatedUser)
         {
             if (updatedUser == null)
                 return BadRequest(ModelState);
 
-            if (userId != updatedUser.UserId)
+            if (userNumber != updatedUser.UserNumber)
                 return BadRequest(ModelState);
 
-            if (!_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userNumber))
                 return NotFound();
 
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var userMap = _mapper.Map<User>(updatedUser);
+            // Get the user
+            var existingUser = _userRepository.GetUser(userNumber);
+            if (existingUser == null)
+                return NotFound();
 
-            //change password
-            string existingPassword = _userRepository.GetUser(userId).Password;
-            if (password != null)
-                if (password == existingPassword)
-                {
-                    ModelState.AddModelError("", "Please choose a different password.");
-                    return StatusCode(500, ModelState);
-                }
-                else {
-                    userMap.Password = password;
-                }
-            else
-                userMap.Password = existingPassword; //TODO: make change password seperate function
+            // Update the necessary fields
+            existingUser.FirstName = updatedUser.FirstName;
+            existingUser.LastName = updatedUser.LastName;
+            existingUser.UserName = updatedUser.UserName;
 
-            //change classroom
-            if (classId != null)
-            {
-                Classroom currentClass = _userRepository.GetUser(userId).Classroom;
-                Classroom updatedClass = _classroomRepository.GetClassroom((int)classId);
-                if (classId == (currentClass == null? null : currentClass.ClassId))
-                {
-                    ModelState.AddModelError("", "Please choose a different classroom.");
-                    return StatusCode(500, ModelState);
-                }
-                else
-                {
-                    userMap.Classroom = updatedClass;
-                }
-            } else
-            {
-                userMap.Classroom = null;
-            }
-
-            if (!_userRepository.UpdateUser(userMap))
+            if (!_userRepository.UpdateUser(existingUser))
             {
                 ModelState.AddModelError("", "Something went wrong updating user");
                 return StatusCode(500, ModelState);
@@ -155,21 +102,104 @@ namespace JuniorRangers_API.Controllers
             return NoContent();
         }
 
-
-
-        //DELETE METHODS
-        [HttpDelete("userId")]
+        //Manually assign user to a classroom
+        [Authorize(Roles = "Admin,Ranger")]
+        [HttpPut("updateUserClass")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult DeleteUser(int userId)
+        public IActionResult UpdateUserClass(int userNumber, [FromQuery] int classId)
         {
-            if (!_userRepository.UserExists(userId))
+            if (!_userRepository.UserExists(userNumber))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = _userRepository.GetUser(userNumber);
+            var currentClass = user.Classroom;
+            var updatedClass = _classroomRepository.GetClassroom(classId);
+
+            if (classId == (currentClass == null ? 0 : currentClass.ClassId))
+            {
+                ModelState.AddModelError("", "Please choose a different classroom.");
+                return StatusCode(500, ModelState);
+            }
+
+            user.Classroom = updatedClass;
+
+            if (!_userRepository.UpdateUser(user))
+            {
+                ModelState.AddModelError("", "Something went wrong updating user classroom");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        //Allow student to join class via class code
+        [Authorize]
+        [HttpPut("joinByClasscode")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult JoinClassByCode(int userNumber, [FromQuery] string classCode)
+        {
+            if (!_userRepository.UserExists(userNumber))
+                return NotFound();
+
+            //find classroom by classcode
+            var classrooms = _classroomRepository.GetClassrooms();
+            Classroom updatedClass = null;
+            foreach (var classroom in classrooms)
+            {
+                if (classroom.JoinCode == classCode)
+                    updatedClass = classroom;
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = _userRepository.GetUser(userNumber);
+            var currentClass = user.Classroom;
+
+            if (updatedClass.ClassId == (currentClass == null ? 0 : currentClass.ClassId))
+            {
+                ModelState.AddModelError("", "Already in class.");
+                return StatusCode(500, ModelState);
+            }
+
+            if (updatedClass == null)
+            {
+                ModelState.AddModelError("", "Invalid class code.");
+                return StatusCode(500, ModelState);
+            }
+
+            user.Classroom = updatedClass;
+
+            if (!_userRepository.UpdateUser(user))
+            {
+                ModelState.AddModelError("", "Something went wrong updating user classroom");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+
+        //DELETE METHODS
+        [HttpDelete("userNumber")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteUser(int userNumber)
+        {
+            if (!_userRepository.UserExists(userNumber))
             {
                 return NotFound();
             }
 
-            var userToDelete = _userRepository.GetUser(userId);
+            var userToDelete = _userRepository.GetUser(userNumber);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

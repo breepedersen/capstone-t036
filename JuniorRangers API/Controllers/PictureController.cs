@@ -87,7 +87,7 @@ namespace JuniorRangers_API.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreatePicture([FromBody] PictureDto pictureCreate, [FromQuery] int userId, [FromQuery] int? albumId, [FromQuery] int? postId)
+        public IActionResult CreatePicture([FromBody] PictureDto pictureCreate, [FromQuery] int userNumber, [FromQuery] int? albumId, [FromQuery] int? postId)
         {
 /*            if (pictureCreate == null)
                 return BadRequest(ModelState);
@@ -107,7 +107,7 @@ namespace JuniorRangers_API.Controllers
 
             var pictureMap = _mapper.Map<Picture>(pictureCreate);
             pictureMap.UploadDate = DateTime.Now;
-            pictureMap.Uploader = _userRepository.GetUser(userId);
+            pictureMap.Uploader = _userRepository.GetUser(userNumber);
             if (albumId != null) 
                 pictureMap.Album = _albumRepository.GetAlbum((int)albumId);
             if (postId != null)

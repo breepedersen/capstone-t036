@@ -2,7 +2,9 @@
 using Azure.Core;
 using JuniorRangers_API.Data;
 using JuniorRangers_API.Interfaces;
+using JuniorRangers_API.Migrations;
 using JuniorRangers_API.Models;
+using JuniorRangers_API.Models.JoinTables;
 
 namespace JuniorRangers_API.Repository
 {
@@ -47,14 +49,9 @@ namespace JuniorRangers_API.Repository
             return _context.Achievements.OrderBy(a => a.AchievementId).ToList();
         }
 
-        public ICollection<Achievement> GetAchievementsByMissionGroup(int missonGroupId)
+        public ICollection<Achievement> GetAchievementsByUser(int userNumber)
         {
-            return _context.Achievements.Where(a => a.MissionGroup == missonGroupId).ToList();
-        }
-
-        public ICollection<Achievement> GetAchievementsByUser(int UserId)
-        {
-            return _context.UserAchievements.Where(u => u.UserId == UserId).Select(a => a.Achievement).ToList();
+            return _context.UserAchievements.Where(u => u.UserNumber == userNumber).Select(a => a.Achievement).ToList();
         }
 
         public ICollection<User> GetUsersByAchievement(int achievementId)
@@ -73,5 +70,6 @@ namespace JuniorRangers_API.Repository
             _context.Update(achievement);
             return Save();
         }
+
     }
 }
