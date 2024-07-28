@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JuniorRangers_API.Dto;
 using JuniorRangers_API.Models;
+using JuniorRangers_API.Models.JoinTables;
 
 namespace JuniorRangers_API.Helper
 {
@@ -24,6 +25,8 @@ namespace JuniorRangers_API.Helper
             CreateMap<PictureDto, Picture>();
             CreateMap<Post, PostDto>();
             CreateMap<PostDto, Post>();
+            CreateMap<MissionGroup, MissionGroupDto>();
+            CreateMap<MissionGroupDto, MissionGroup>();
         }
     }
 }

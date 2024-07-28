@@ -1,4 +1,5 @@
 ﻿using JuniorRangers_API.Models;
+using JuniorRangers_API.Models.JoinTables;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace JuniorRangers_API.Data
         public DbSet<MissionGroup> MissionGroups { get; set; }
         public DbSet<ClassMission> ClassMissions { get; set; }
         public DbSet<AchievementMissionGroup> AchievementMissionGroups { get; set; }
+        public DbSet<ClassMissionStatus> ClassMissionStatuses { get; set; }
 
         //to setup linking of many-to-many tables (without going directly into database)
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -72,6 +74,22 @@ namespace JuniorRangers_API.Data
                 .HasOne(amg => amg.MissionGroup)
                 .WithMany(mg => mg.AchievementMissionGroups)
                 .HasForeignKey(amg => amg.MissionGroupId);
+
+            // Configure many-to-many relationship for Classroom, MissionGroup, and Achievement through ClassroomAchievementStatus
+            modelBuilder.Entity<ClassMissionStatus>()
+                .HasKey(cms => new { cms.ClassroomId, cms.MissionGroupId, cms.AchievementId });
+            modelBuilder.Entity<ClassMissionStatus>()
+                .HasOne(cms => cms.Classroom)
+                .WithMany(c => c.ClassMissionStatuses)
+                .HasForeignKey(cms => cms.ClassroomId);
+            modelBuilder.Entity<ClassMissionStatus>()
+                .HasOne(cms => cms.MissionGroup)
+                .WithMany(mg => mg.ClassMissionStatuses)
+                .HasForeignKey(cms => cms.MissionGroupId);
+            modelBuilder.Entity<ClassMissionStatus>()
+                .HasOne(cms => cms.Achievement)
+                .WithMany(a => a.ClassMissionStatuses)
+                .HasForeignKey(cms => cms.AchievementId);
 
 
             List<IdentityRole> roles = new List<IdentityRole>

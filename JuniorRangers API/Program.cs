@@ -36,6 +36,7 @@ namespace JuniorRangers_API
             builder.Services.AddScoped<IPictureRepository, PictureRepository>();
             builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
             builder.Services.AddScoped<IPostRepository, PostRepository>();
+            builder.Services.AddScoped<IMissionGroupRepository, MissionGroupRepository>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

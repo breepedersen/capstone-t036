@@ -1,4 +1,5 @@
 ﻿using JuniorRangers_API.Models;
+using JuniorRangers_API.Models.JoinTables;
 
 namespace JuniorRangers_API.Interfaces
 {
@@ -14,15 +15,6 @@ namespace JuniorRangers_API.Interfaces
         bool AwardAchievement(UserAchievement userAchievement);
         bool DeleteAchievement(Achievement achievement);
         
-        // Mission group methods
-        ICollection<MissionGroup> GetMissionGroups();
-        ICollection<Achievement> GetAchievementsByMissionGroup(int missonGroupId);
-        bool MissionGroupExists(int missonGroupId);
-        bool CreateMissionGroup(MissionGroup missonGroup);
-        bool UpdateMissionGroup(MissionGroup missonGroup);
-        bool AssignMissionGroupToClass(ClassMission classmission);
-        //bool CompleteClassAchievement(UserAchievement userAchievement);
-        bool DeleteMissionGroup(MissionGroup missonGroup);
-        bool Save();
+
     }
 }

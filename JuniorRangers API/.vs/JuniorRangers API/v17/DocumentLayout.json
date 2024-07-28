@@ -3,52 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\achievementmissiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\achievementmissiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\controllers\\missiongroupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:controllers\\missiongroupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\repository\\missiongrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:repository\\missiongrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\controllers\\achievementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:controllers\\achievementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\interfaces\\imissiongrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:interfaces\\imissiongrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\dto\\missiongroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:dto\\missiongroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\jointables\\classmissionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\jointables\\classmissionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\jointables\\achievementmissiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\jointables\\achievementmissiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\jointables\\classmission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\jointables\\classmission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\repository\\achievementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:repository\\achievementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\interfaces\\iachievementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:interfaces\\iachievementrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\classmission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\classmission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\achievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\achievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\userachievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\userachievement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\missiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\missiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\classroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\classroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\models\\jointables\\missiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|solutionrelative:models\\jointables\\missiongroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA3F7FA9-78E4-4B5A-8A82-9A69F3ABE44F}|JuniorRangers API.csproj|c:\\users\\tom\\onedrive - queensland university of technology\\stuff\\2024\\sem 1\\ifb398 capstone project\\junior rangers app\\juniorrangers api\\controllers\\classroomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,22 +57,9 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 38,
-          "SelectedChildIndex": 5,
+          "DockedWidth": 173,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IAchievementRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Interfaces\\IAchievementRepository.cs",
-              "RelativeDocumentMoniker": "Interfaces\\IAchievementRepository.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Interfaces\\IAchievementRepository.cs",
-              "RelativeToolTip": "Interfaces\\IAchievementRepository.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T11:23:34.862Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
@@ -91,38 +70,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AchievementRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\AchievementRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\AchievementRepository.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\AchievementRepository.cs",
-              "RelativeToolTip": "Repository\\AchievementRepository.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAswGQAAAAPAAAA",
+              "DocumentIndex": 4,
+              "Title": "MissionGroupDto.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Dto\\MissionGroupDto.cs",
+              "RelativeDocumentMoniker": "Dto\\MissionGroupDto.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Dto\\MissionGroupDto.cs",
+              "RelativeToolTip": "Dto\\MissionGroupDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T10:50:19.796Z",
+              "WhenOpened": "2024-07-28T01:46:05.823Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AchievementController.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\AchievementController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AchievementController.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\AchievementController.cs",
-              "RelativeToolTip": "Controllers\\AchievementController.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAewGcAAAAkAAAA",
+              "DocumentIndex": 5,
+              "Title": "ClassMissionStatus.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\ClassMissionStatus.cs",
+              "RelativeDocumentMoniker": "Models\\JoinTables\\ClassMissionStatus.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\ClassMissionStatus.cs",
+              "RelativeToolTip": "Models\\JoinTables\\ClassMissionStatus.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T08:46:03.285Z",
+              "WhenOpened": "2024-07-27T23:50:04.354Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MissionGroupController.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\MissionGroupController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MissionGroupController.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\MissionGroupController.cs",
+              "RelativeToolTip": "Controllers\\MissionGroupController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAA1wDEAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:27:58.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "AchievementMissionGroup.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\AchievementMissionGroup.cs",
-              "RelativeDocumentMoniker": "Models\\AchievementMissionGroup.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\AchievementMissionGroup.cs",
-              "RelativeToolTip": "Models\\AchievementMissionGroup.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\AchievementMissionGroup.cs",
+              "RelativeDocumentMoniker": "Models\\JoinTables\\AchievementMissionGroup.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\AchievementMissionGroup.cs",
+              "RelativeToolTip": "Models\\JoinTables\\AchievementMissionGroup.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T10:48:49.241Z",
@@ -130,111 +122,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
+              "Title": "AchievementRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\AchievementRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\AchievementRepository.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\AchievementRepository.cs",
+              "RelativeToolTip": "Repository\\AchievementRepository.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwCsAAABZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:15:20.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "ClassMission.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\ClassMission.cs",
-              "RelativeDocumentMoniker": "Models\\ClassMission.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\ClassMission.cs",
-              "RelativeToolTip": "Models\\ClassMission.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA2AAAA",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\ClassMission.cs",
+              "RelativeDocumentMoniker": "Models\\JoinTables\\ClassMission.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\ClassMission.cs",
+              "RelativeToolTip": "Models\\JoinTables\\ClassMission.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T10:16:41.51Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T10:32:17.359Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserAchievement.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\UserAchievement.cs",
-              "RelativeDocumentMoniker": "Models\\UserAchievement.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\UserAchievement.cs",
-              "RelativeToolTip": "Models\\UserAchievement.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T10:04:30.477Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 9,
               "Title": "MissionGroup.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\MissionGroup.cs",
-              "RelativeDocumentMoniker": "Models\\MissionGroup.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\MissionGroup.cs",
-              "RelativeToolTip": "Models\\MissionGroup.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\MissionGroup.cs",
+              "RelativeDocumentMoniker": "Models\\JoinTables\\MissionGroup.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\JoinTables\\MissionGroup.cs",
+              "RelativeToolTip": "Models\\JoinTables\\MissionGroup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T09:56:45.782Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Achievement.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\Achievement.cs",
-              "RelativeDocumentMoniker": "Models\\Achievement.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\Achievement.cs",
-              "RelativeToolTip": "Models\\Achievement.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T09:31:14.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Classroom.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\Classroom.cs",
-              "RelativeDocumentMoniker": "Models\\Classroom.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Models\\Classroom.cs",
-              "RelativeToolTip": "Models\\Classroom.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-25T11:40:35.071Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAawJUAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-25T11:18:07.551Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Data\\DataContext.cs",
-              "RelativeDocumentMoniker": "Data\\DataContext.cs",
-              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Data\\DataContext.cs",
-              "RelativeToolTip": "Data\\DataContext.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAUwEEAAABKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T10:58:17.496Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "ClassroomController.cs",
               "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\ClassroomController.cs",
               "RelativeDocumentMoniker": "Controllers\\ClassroomController.cs",
@@ -242,12 +169,11 @@
               "RelativeToolTip": "Controllers\\ClassroomController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAHkAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T04:39:36.005Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-27T04:39:36.005Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 11,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -260,12 +186,51 @@
           ]
         },
         {
-          "DockedWidth": 38,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 65,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AchievementController.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\AchievementController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AchievementController.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Controllers\\AchievementController.cs",
+              "RelativeToolTip": "Controllers\\AchievementController.cs",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAIwFoAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T08:46:03.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MissionGroupRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\MissionGroupRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\MissionGroupRepository.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Repository\\MissionGroupRepository.cs",
+              "RelativeToolTip": "Repository\\MissionGroupRepository.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAuwE8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:24:29.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IMissionGroupRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Interfaces\\IMissionGroupRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IMissionGroupRepository.cs",
+              "ToolTip": "C:\\Users\\Tom\\OneDrive - Queensland University of Technology\\stuff\\2024\\Sem 1\\IFB398 Capstone Project\\Junior Rangers App\\JuniorRangers API\\Interfaces\\IMissionGroupRepository.cs",
+              "RelativeToolTip": "Interfaces\\IMissionGroupRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:23:40.626Z",
+              "EditorCaption": ""
             }
           ]
         }

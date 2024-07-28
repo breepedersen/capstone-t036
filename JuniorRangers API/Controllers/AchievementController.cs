@@ -2,6 +2,7 @@
 using JuniorRangers_API.Dto;
 using JuniorRangers_API.Interfaces;
 using JuniorRangers_API.Models;
+using JuniorRangers_API.Models.JoinTables;
 using JuniorRangers_API.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,7 @@ namespace JuniorRangers_API.Controllers
         }
 
 
+        //GET METHODS
         //Get all achievements
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
@@ -35,7 +37,6 @@ namespace JuniorRangers_API.Controllers
                 return BadRequest(ModelState);
 
             return Ok(achievements);
-
         }
 
         //Get a specific achievement by ID
@@ -55,19 +56,7 @@ namespace JuniorRangers_API.Controllers
             return Ok(achievement);
         }
 
-        //Get list of achievements by missiongroupID
-        [HttpGet("mission/{missionGroup}")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Achievement>))]
-        [ProducesResponseType(400)]
-        public IActionResult GetAchievementsByMissionGroup(int missionGroup)
-        {
-            var missions = _mapper.Map<List<AchievementDto>>(_achievementRepository.GetAchievementsByMissionGroup(missionGroup));
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            return Ok(missions);
-        }
 
         /// <summary>
         /// Get list of users that have been awarded a specific achievement
