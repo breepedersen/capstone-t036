@@ -7,6 +7,7 @@ using JuniorRangers_API.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace JuniorRangers_API.Controllers
 {
@@ -36,7 +37,7 @@ namespace JuniorRangers_API.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<MissionGroup>))]
         public IActionResult GetMissionGroups()
         {
-            var missionGroups = _missionGroupRepository.GetMissionGroups();
+            var missionGroups = _mapper.Map<List<MissionGroupDto>>(_missionGroupRepository.GetMissionGroups());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -60,6 +61,24 @@ namespace JuniorRangers_API.Controllers
 
             return Ok(missions);
         }
+
+        //Get list of all missiongroups (and corresponding achievements) assigned to a classroom
+        [HttpGet("Classroom/{classroomId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ClassMissionStatus>))]
+        [ProducesResponseType(400)]
+        public IActionResult GetClassMissions(int classroomId)
+        {
+            if (!_classroomRepository.ClassroomExists(classroomId))
+                return NotFound();
+
+            //Get class missions
+            var classMissions = _missionGroupRepository.GetClassMissions(classroomId);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(classMissions);
+        }
+
 
         //POST METHODS
         //Create a new mission group (input a name, description)

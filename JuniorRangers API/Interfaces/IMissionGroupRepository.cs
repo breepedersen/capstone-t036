@@ -8,6 +8,7 @@ namespace JuniorRangers_API.Interfaces
         // Mission group methods
         ICollection<MissionGroup> GetMissionGroups();
         MissionGroup GetMissionGroup(int missionGroupId);
+        ICollection<ClassMissionStatus> GetClassMissions(int classroomId);
         ICollection<Achievement> GetAchievementsByMissionGroup(int missonGroupId);
         ClassMissionStatus GetClassMissionStatus(int classroomId, int missionGroupId, int achievementId);
         bool MissionGroupExists(int missonGroupId);

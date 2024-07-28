@@ -60,7 +60,7 @@ namespace JuniorRangers_API.Controllers
 
 
         //POST METHODS
-
+        //performed in account controller
 
 
         //PUT METHODS
@@ -102,7 +102,7 @@ namespace JuniorRangers_API.Controllers
             return NoContent();
         }
 
-        //Manually ssign user to a classroom
+        //Manually assign user to a classroom
         [Authorize(Roles = "Admin,Ranger")]
         [HttpPut("updateUserClass")]
         [ProducesResponseType(204)]
@@ -137,6 +137,54 @@ namespace JuniorRangers_API.Controllers
             return NoContent();
         }
 
+        //Allow student to join class via class code
+        [Authorize]
+        [HttpPut("joinByClasscode")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult JoinClassByCode(int userNumber, [FromQuery] string classCode)
+        {
+            if (!_userRepository.UserExists(userNumber))
+                return NotFound();
+
+            //find classroom by classcode
+            var classrooms = _classroomRepository.GetClassrooms();
+            Classroom updatedClass = null;
+            foreach (var classroom in classrooms)
+            {
+                if (classroom.JoinCode == classCode)
+                    updatedClass = classroom;
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = _userRepository.GetUser(userNumber);
+            var currentClass = user.Classroom;
+
+            if (updatedClass.ClassId == (currentClass == null ? 0 : currentClass.ClassId))
+            {
+                ModelState.AddModelError("", "Already in class.");
+                return StatusCode(500, ModelState);
+            }
+
+            if (updatedClass == null)
+            {
+                ModelState.AddModelError("", "Invalid class code.");
+                return StatusCode(500, ModelState);
+            }
+
+            user.Classroom = updatedClass;
+
+            if (!_userRepository.UpdateUser(user))
+            {
+                ModelState.AddModelError("", "Something went wrong updating user classroom");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
 
 
         //DELETE METHODS

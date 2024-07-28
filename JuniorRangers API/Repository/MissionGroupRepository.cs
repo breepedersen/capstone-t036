@@ -85,5 +85,10 @@ namespace JuniorRangers_API.Repository
         {
             return _context.ClassMissionStatuses.Where(s => s.ClassroomId == classroomId && s.MissionGroupId == missionGroupId && s.AchievementId == achievementId).FirstOrDefault();
         }
+
+        public ICollection<Models.JoinTables.ClassMissionStatus> GetClassMissions(int classroomId)
+        {
+            return _context.ClassMissionStatuses.Where(s => s.ClassroomId == classroomId).OrderBy(m => m.MissionGroupId).ToList();
+        }
     }
 }

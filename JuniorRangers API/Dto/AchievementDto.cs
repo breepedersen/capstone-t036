@@ -9,6 +9,6 @@ namespace JuniorRangers_API.Dto
         [StringLength(50)]
         public String Description { get; set; }
         public int Points { get; set; }
-        public int? MissionGroup { get; set; }
+        //public int? MissionGroup { get; set; }
     }
 }
